@@ -1,0 +1,167 @@
+﻿@model IEnumerable<OrderFood.Web.Models.SepetItem>
+@{
+    ViewBag.Title = "Gracias por elegirnos, sus pedidos han sido enviados a la empresa.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>@ViewBag.Title</h2>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+@if (User.Identity.IsAuthenticated == true)
+{
+    <section id="cart-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-view-area">
+                        <div class="cart-view-table">
+                            <form action="">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre del Producto</th>
+                                                <th>Precio</th>
+                                                <th>Descuento</th>
+                                                <th>Total de la Orden</th>
+                                                <th>El Monto a Pagar</th>
+                                                <th>Empresa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>@item.Urun.Name</td>
+                                                    <td>
+                                                        @if (item.Urun.DicsountPrice != null && item.Urun.DicsountPrice != Convert.ToDecimal(0.00))
+                                                        {
+                                                            @item.Urun.DicsountPrice.Value.ToString()
+                                                        }
+                                                        else
+                                                        {
+                                                            @item.Urun.SellingPrice.ToString()
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @if (item.Indirim != null)
+                                                        {
+                                                            @item.Indirim
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>0</span>
+                                                        }
+                                                    </td>
+                                                    <td id="cardAdet">
+                                                        @Html.TextBoxFor(i => item.Adet, new { @class = "txt", data_id = item.ProductId })
+                                                    </td>
+                                                    <td>@item.ToplamFiyat.ToString()</td>
+                                                    <td>
+                                                        @if (item.Urun.CompanyId != null)
+                                                        {
+                                                            <strong> @item.Urun.Company.Name</strong>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                            <div class="cart-view-total">
+                                <h4>Total de la Cesta</h4>
+                                <table class="aa-totals-table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Cantidad</th>
+                                            <td>@ViewBag.Sepets</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="aa-blog-archive">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="aa-blog-archive-area">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="aa-blog-content aa-blog-details">
+                                    <article class="aa-blog-content-single">
+                                        <blockquote>
+                                            Hola @Session["KullanıcıAdıSoyadı"];
+                                        </blockquote>
+                                        <br />
+                                        <blockquote>
+                                            @ViewBag.Title
+                                        </blockquote>
+                                        <div class="blog-single-bottom">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                    <div class="blog-single-tag">
+                                                        <span>Si Quieres Seguirnos => </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <div class="blog-single-social">
+                                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="aa-blog-navigation">
+                                            @if (User.IsInRole("Users"))
+                                            {
+                                                <a class="aa-blog-prev" href="~/HomeUser/Index"><span class="fa fa-arrow-right"></span>Tu Perfil</a>
+                                            }
+                                            @if (User.IsInRole("Tienda"))
+                                            {
+                                                <a class="aa-blog-prev" href="~/HomeCompany/Index"><span class="fa fa-arrow-right"></span>Tu Perfil</a>
+                                            }
+                                            @if (User.IsInRole("Admin,Asistan,Helper"))
+                                            {
+                                                <a class="aa-blog-prev" href="~/Admin/Index"><span class="fa fa-arrow-right"></span>Tu Perfil</a>
+                                            }
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-8">
+            <strong style="color:darkred">
+                Tienes que iniciar sesión para poder realizar un pedido. Si es miembro, inicie sesión ahora o regístrese => <a href="~/UserAccount/Register" class="btn btn-primary">Hemen Üye Ol</a> haga clic en el botón.<br />
+                Que tengas un buen día y buenas compras. Disfrute de su comida.
+            </strong>
+        </div>
+    </div>
+}

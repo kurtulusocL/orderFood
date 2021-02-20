@@ -1,0 +1,26 @@
+﻿@model OrderFood.Data.Identity.ApplicationUser
+@{
+    Layout = null;
+}
+
+@if (Model.Gender != null)
+{
+    <a class="badge badge-light mr-1">@Model.Gender</a>
+}
+@if (Model.Birthdate != null)
+{
+    <a class="badge badge-light mr-1">Fecha de Nacimiento: @Model.Birthdate.Value.ToShortDateString()</a>
+}
+else
+{
+    <span class="badge badge-light mr-1">No especificaste <br /> tu fecha de nacimiento</span>
+}
+<a class="badge badge-light mr-1">Membresía: @Model.CreatedDate.ToLongDateString()</a>
+@if (Model.UpdatedDate != null)
+{
+    <a class="badge badge-light mr-1">Actualizada: @Model.UpdatedDate.Value.ToLongDateString()</a>
+}
+else
+{
+    <span class="badge badge-light mr-1">Perfil no actualizado.</span>
+}

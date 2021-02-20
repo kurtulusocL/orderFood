@@ -1,0 +1,100 @@
+﻿@model OrderFood.Entity.Models.Complain
+@{
+    ViewBag.Title = "Puede notificarnos su queja sobre el producto";
+    TempData["title"] = "Puedes ayudarnos a mejorarnos.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                @if (TempData["message"] != null)
+                {
+                    <h2>@TempData["message"]</h2>
+                }
+                @if (TempData["err"] != null)
+                {
+                    <h2>@TempData["err"]</h2>
+                }
+                @if (TempData["message"] == null && TempData["err"] == null)
+                {
+                    <h2>@ViewBag.Title</h2>
+                }
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    @if (TempData["message"] != null)
+                    {
+                        <li class="active">@TempData["message"]</li>
+                    }
+                    @if (TempData["err"] != null)
+                    {
+                        <li class="active">@TempData["err"]</li>
+                    }
+                    @if (TempData["message"] == null && TempData["err"] == null)
+                    {
+                        <li class="active">@ViewBag.Title</li>
+                    }
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-contact-area">
+                    <div class="aa-contact-top">
+                        <h2>@ViewBag.Title</h2>
+                        <p>@TempData["title"]</p>
+                    </div>
+                    <div class="aa-contact-address">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="aa-contact-address-left">
+                                    <h6 style="color:darkred">Campos marcados con * son obligatorios</h6>
+                                    <form class="comments-form contact-form" method="post" action="">
+                                        @Html.AntiForgeryToken()
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="NameSurname" placeholder="Nombre-Apellido *" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="email" name="EMail" placeholder="Correo Electronico *" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="PhoneNumber" placeholder="Número de Teléfono *" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="Subject" placeholder="Asunto de la Queja *" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="Text" rows="3" placeholder="Tu Queja *" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="g-recaptcha" data-sitekey="6LelQDMaAAAAAHec6nJWHIEx8tLmrMa2d9SIwj0S"></div>
+                                            <button type="submit" class="aa-secondary-btn" onclick="return confirm('Gracias por tu informe. Consulta tu casilla de correo electrónico porque te informaremos.')">Reporte</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

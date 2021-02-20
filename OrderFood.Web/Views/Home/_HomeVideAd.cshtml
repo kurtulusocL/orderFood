@@ -1,0 +1,13 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.VideoAd>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <iframe src="@item.VideoLink" frameborder="0" allowtransparency="false" style="max-height:215px;max-width:600px;min-height:215px;min-width:600px;">
+        @{
+            Html.RenderAction("_HitCount", "VideoAd", new { id = item.Id });
+        }
+    </iframe>
+}

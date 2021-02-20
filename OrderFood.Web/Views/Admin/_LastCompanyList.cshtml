@@ -1,0 +1,13 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Company>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="panel-body">
+        <span>@item.Name</span>
+        <span>@item.Country.Name - @item.City.Name</span>
+        <span>Türü: @item.Kind.Name</span>
+    </div>
+}

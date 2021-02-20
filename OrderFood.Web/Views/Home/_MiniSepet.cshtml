@@ -1,0 +1,56 @@
+﻿@model OrderFood.Web.Models.Sepet
+@{
+    Layout = null;
+}
+
+<div class="aa-cartbox">
+    @if (Model != null)
+    {
+        <a class="aa-cart-link" href="#">
+            <span class="fa fa-shopping-basket"></span>
+            <span class="aa-cart-title">Refrescar Pagina para Carrito</span>
+            <span class="aa-cart-notify">@Model.Urunler.Sum(i => i.Adet)</span>
+        </a>
+        <div class="aa-cartbox-summary">
+            <form action="" method="get">
+                <ul>
+                    @foreach (var item in Model.Urunler)
+                    {
+                        <li>
+                            @{
+                                Html.RenderAction("_OrderPhoto", "Home", new { id = item.ProductId });
+                            }
+                            <div class="aa-cartbox-info">
+                                <h4><a href="">@item.Urun.Name</a></h4>
+                                @if (item.Urun.DicsountPrice != null && item.Urun.DicsountPrice != Convert.ToDecimal(0.00))
+                                {
+                                    <p>@item.Adet x @item.Urun.DicsountPrice</p>
+                                }
+                                else
+                                {
+                                    <p>@item.Adet x @item.Urun.SellingPrice</p>
+                                }
+                                <p>
+                                    @if (item.Urun.CompanyId != null)
+                                    {
+                                        @item.Urun.Company.Name
+                                    }
+                                </p>
+                            </div>
+                            <a class="aa-remove-product" href="~/Order/LessPiece/@item.ProductId"><span class="fa fa-times"></span></a>
+                        </li>
+                    }
+                </ul>
+            </form>
+            <a class="aa-cartbox-checkout aa-primary-btn" href="~/Order/Pay">Editar o Pagar</a>
+        </div>
+    }
+    @if (Model == null)
+    {
+        <a class="aa-cart-link" href="#">
+            <span class="fa fa-shopping-basket"></span>
+            <span class="aa-cart-title">Refrescar Pagina para Carrito</span>
+            <span class="aa-cart-notify">0 Comida</span>
+        </a>
+    }
+</div>

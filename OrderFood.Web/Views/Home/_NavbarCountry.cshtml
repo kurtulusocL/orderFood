@@ -1,0 +1,9 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Country>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li><a href="~/Product/Country/@item.Id">@item.Name</a></li>
+}

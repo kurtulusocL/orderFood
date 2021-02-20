@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="col-md-12">
+    <div class="aa-header-bottom-area">
+        <div class="aa-logo">
+            <a href="~/Home/Index">
+                <span class="fa fa-shopping-cart"></span>
+                <p>pro<strong>vechoo</strong> <span>Tu Servicio de Comida ...</span></p>
+            </a>
+        </div>
+        @{
+            Html.RenderAction("_MiniSepet", "Home");
+        }
+        <div class="aa-search-box">
+            @{
+                Html.RenderAction("_SearchPartial", "Home");
+            }
+        </div>
+    </div>
+</div>

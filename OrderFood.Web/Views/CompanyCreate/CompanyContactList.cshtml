@@ -1,0 +1,95 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.CompanyContact>
+@{
+    ViewBag.Title = "Direcciones De Contacto De Su Compañía";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">@ViewBag.Title</h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/UserProfile" class="breadcrumb-link">Perfil de la Compañía</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">@ViewBag.Title - <a href="~/CompanyCreate/CompanyList" class="btn btn-primary btn-xs">Lista de Compañía</a> - <a href="~/CompanyCreate/ProductList" class="btn btn-info btn-xs">Lista de Productos</a> - <a href="~/CompanyCreate/CompanySocialMediaList" class="btn btn-dark btn-xs">Lista de Cuentas Redes Sociales de la Compañía</a></h5>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered first">
+                            <thead>
+                                <tr>
+                                    <th>Ubicación</th>
+                                    <th>Correo Electrónico</th>
+                                    <th>Nombre de Compañía</th>
+                                    <th>Teléfono No 1</th>
+                                    <th>Ciudad/País</th>
+                                    <th>Fecha de Registro</th>
+                                    <th>Actas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <iframe src="@item.Location" frameborder="0" allowtransparency="false" style="max-height:100px;max-width:160px;min-height:100px;min-width:160px"></iframe>
+                                        </td>
+                                        <td>@item.EMail</td>
+                                        <td>
+                                            @if (item.CompanyId != null)
+                                            {
+                                                <strong style="color:darkblue">@item.Company.Name</strong>
+                                            }
+                                        </td>
+                                        <td>@item.PhoneNumber1</td>
+                                        <td>
+                                            @if (item.CompanyId != null)
+                                            {
+                                                <strong>Ciudad: @item.Company.City.Name</strong><br />
+                                                <strong>País: @item.Company.Country.Name</strong>
+                                            }
+                                        </td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td>
+                                            <a href="~/CompanyCreate/ContactEdit/@item.CompanyId" class="btn btn-success btn-xs">Actualizar</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Lokasyonu</th>
+                                    <th>E-Mail Adresi</th>
+                                    <th>Firma Adı</th>
+                                    <th>Telefon No 1</th>
+                                    <th>Şehir/Ülke</th>
+                                    <th>Eklenme Tarihi</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("CompanyContactList", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

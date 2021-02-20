@@ -1,0 +1,76 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Contact>
+@{
+    ViewBag.Title = "Contáctenos";
+    TempData["title"] = "Aquí Estamos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>@ViewBag.Title</h2>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-contact-area">
+                    <div class="aa-contact-top">
+                        <h2>@TempData["title"]</h2>
+                        <p>@ViewBag.Title</p>
+                    </div>
+                    <div class="aa-contact-map">
+                        @foreach (var item in Model)
+                        {
+                            <iframe src="@item.Location" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        }
+                        <div class="aa-contact-address">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="aa-contact-address-right">
+                                        <address>
+                                            <h4>Direcciones de Contacto</h4>
+                                            <hr />
+                                            @foreach (var item in Model)
+                                            {
+                                                <p><span class="fa fa-home"></span> @item.Address</p>
+                                                <p><span class="fa fa-phone"></span> @item.FaxNumber</p>
+                                                <p><span class="fa fa-envelope"></span>Email: @item.EMail</p>
+                                                <hr />
+                                                {
+                                                    Html.RenderAction("_HitCount", "Contact", new { id = item.Id });
+                                                }
+                                            }
+                                        </address>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-subscribe-area">
+                    @{
+                        Html.RenderAction("_CompanyVideoAd", "Home");
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

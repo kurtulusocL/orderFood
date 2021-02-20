@@ -1,0 +1,17 @@
+﻿@model OrderFood.Data.Identity.ApplicationUser
+@{
+    Layout = null;
+}
+
+@if (Model.Province != null)
+{
+    <li class="mb-2"><i class="fas fa-fw fa-map mr-2"></i>@Model.Province</li>
+}
+@if (Model.City != null)
+{
+    <li class="mb-0"><i class="fas fa-fw fa-map mr-2"></i>@Model.City</li>
+}
+@if (Model.Country != null)
+{
+    <li class="mb-0"><i class="fas fa-fw fa-map mr-2"></i>@Model.Country</li>
+}

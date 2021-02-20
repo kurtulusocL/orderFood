@@ -1,0 +1,14 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Picture>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    if (item.ProductId != null)
+    {
+        <a class="aa-product-img" href="~/Product/Detail/@item.ProductId">
+            <img src="~/img/foto/@item.ImageUrl" style="max-height:300px;max-width:250px;min-height:300px;min-width:250px;" title="@item.Product.Name" alt="@item.ImageUrl">
+        </a>
+    }
+}

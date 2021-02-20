@@ -1,0 +1,80 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Complain>
+@{
+    ViewBag.Title = "Quejas de la Empresa";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">@ViewBag.Title</h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/HomeUser/Index" class="breadcrumb-link">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">@ViewBag.Title</h5>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered first">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de Queja</th>
+                                    <th>Asunto de la Queja</th>
+                                    <th>Su Queja</th>
+                                    <th>Correo electrónico</th>
+                                    <th>Fecha de la Queja</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @if (item.CompanyId != null)
+                                            {
+                                                <span>
+                                                    Queja de la Empresa: @item.Company.Name
+                                                </span>
+                                            }
+                                        </td>
+                                        <td>@item.Subject</td>
+                                        <td>@item.Text</td>
+                                        <td>@item.EMail</td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Tipo de Queja</th>
+                                    <th>Asunto de la Queja</th>
+                                    <th>Su Queja</th>
+                                    <th>Correo electrónico</th>
+                                    <th>Fecha de la Queja</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="pagination" align="center">
+                        <div class="pagination-large">
+                            @Html.PagedListPager(Model, Page => Url.Action("ComplainCompany", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

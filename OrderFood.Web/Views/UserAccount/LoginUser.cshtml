@@ -1,0 +1,79 @@
+﻿@model OrderFood.Entity.UserModels.Login
+@{
+    ViewBag.Title = "Iniciar Sesión";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                @if (TempData["msg"] != null)
+                {
+                    <h2> @TempData["msg"]</h2>
+                }
+                @if (TempData["confirm"] != null)
+                {
+                    <h2> @TempData["confirm"]</h2>
+                }
+                @if (TempData["msg"] == null && TempData["confirm"] == null)
+                {
+                    <h2>@ViewBag.Title</h2>
+                }
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    @if (TempData["msg"] != null)
+                    {
+                        <li class="active"> @TempData["msg"]</li>
+                    }
+                    @if (TempData["confirm"] != null)
+                    {
+                        <li class="active"> @TempData["confirm"]</li>
+                    }
+                    @if (TempData["msg"] == null && TempData["confirm"] == null)
+                    {
+                        <li class="active">@ViewBag.Title</li>
+                    }
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-myaccount">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-myaccount-area">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="aa-myaccount-register">
+                                <h4>@ViewBag.Title</h4>
+                                <form action="" class="aa-login-form" method="post">
+                                    @Html.ValidationSummary()
+                                    @using (Html.BeginForm("LoginUser", "UserAccount", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <label for="">Usario<span>*</span></label>
+                                        <input type="text" name="Username" placeholder="Usario">
+                                        <label for="">Contraseña<span>*</span></label>
+                                        <input type="password" name="Password" placeholder="Contraseña">
+                                        <label for="rememberme" class="rememberme">
+                                            <input type="checkbox" name="RememberMe" id="rememberme"> Recuérdame
+                                        </label>
+                                        <button type="submit" class="aa-browse-btn">Iniciar Sesión</button>
+                                    }
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <a href="~/UserAccount/Register" class="btn btn-primary"> ¿No eres miembro todavía?</a>
+                        <a href="~/UserAccount/ForgotPassword" class="btn btn-success">¿Olvidaste Tu Contraseña?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

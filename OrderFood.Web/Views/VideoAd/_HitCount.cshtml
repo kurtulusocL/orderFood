@@ -1,0 +1,14 @@
+﻿@model OrderFood.Entity.Models.VideoAd
+@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: '/VideoAd/_HitCount/',
+            data: { id=@Model.Id},
+            type: 'POST',
+        });
+    })
+</script>

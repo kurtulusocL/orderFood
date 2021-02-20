@@ -1,0 +1,59 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Product>
+@{
+    ViewBag.Title = "Least Ordered Product Categories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <section>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row invoice-list">
+                        <div class="text-center corporate-id">
+                            <strong>@ViewBag.Title</strong>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>City</th>
+                                <th>Country</th>
+                                <th>Delivery</th>
+                                <th>Register Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.Category.Name</td>
+                                    <td>@item.City.Name</td>
+                                    <td>@item.Country.Name</td>
+                                    <td>@item.Orders.Count()</td>
+                                    <td>@item.CreatedDate.ToLongDateString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="text-center invoice-btn">
+                        <a class="btn btn-success btn-xs" href="~/AdminIstatistic/OurIstatistic"> General Company Statistics </a>
+                        <a class="btn btn-primary btn-xs" href="~/AdminIstatistic/CompanyList"> Company Statistics </a>
+                    </div>
+                    <div class="text-center invoice-btn">
+                        <div class="pagination" align="center">
+                            <div class="pagination-large">
+                                @Html.PagedListPager(Model, Page => Url.Action("LessOrderProductCategory", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

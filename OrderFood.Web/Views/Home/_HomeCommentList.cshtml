@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Comment>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <div class="aa-testimonial-single">
+            <img class="aa-testimonial-img" src="~/img/user.jpg" alt="testimonial img">
+            <span class="fa fa-quote-left aa-testimonial-quote"></span>
+            <p>@item.Text</p>
+            <div class="aa-testimonial-info">
+                <p>@item.NameSurname</p>
+                <span>@item.CreatedDate.ToShortDateString()</span>
+                @if (item.CompanyId != null)
+                {
+                    <p><a href="~/Company/Detail/@item.ProductId">Comentario de Empresa: @item.Company.Name</a></p>
+                    if (item.Company.Like > 0 && item.Company.Like != null)
+                    {
+                        <p><i class="glyphicon glyphicon-heart"> @item.Company.Like.Value.ToString()</i></p>
+                    }
+                }
+                @if (item.ProductId != null)
+                {
+                    <p><a href="~/Product/Detail/@item.ProductId">Comentario del Producto: @item.Product.Name</a></p>
+                    if (item.Product.Like > 0 && item.Product.Like != null)
+                    {
+                        <p><i class="glyphicon glyphicon-heart"> @item.Product.Like.Value.ToString()</i></p>
+                    }
+                }
+            </div>
+        </div>
+        @{
+            Html.RenderAction("_HitCount", "Comment", new { id = item.Id });
+        }
+    </li>
+}

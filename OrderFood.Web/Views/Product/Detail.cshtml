@@ -1,0 +1,187 @@
+﻿@model OrderFood.Entity.Models.Product
+@{
+    ViewBag.Title = "Información Detallada de Alimentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>@ViewBag.Title</h2>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    <li><a href="~/Product/Index">Comidas</a></li>
+                    <li><a href="~/Country/Index">Países</a></li>
+                    <li><a href="~/City/Index">Ciudades</a></li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-product-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-product-details-area">
+                    <div class="aa-product-details-content">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <div class="aa-product-view-slider">
+                                    <div id="demo-1" class="simpleLens-gallery-container">
+                                        <div class="simpleLens-container">
+                                            <div class="simpleLens-big-image-container">
+                                                @{
+                                                    Html.RenderAction("_ProductDetailBigPhoto", "Home", new { id = Model.Id });
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="simpleLens-thumbnails-container">
+                                            @{
+                                                Html.RenderAction("_ProductDetailSubPhoto", "Home", new { id = Model.Id });
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                <div class="aa-product-view-content">
+                                    <h3>Comida No: @Model.ProductNo</h3>
+                                    <h3>@Model.Name</h3>
+                                    <h4>@Model.Title</h4>
+                                    <div class="aa-price-block">
+                                        @if (Model.DicsountPrice != null && Model.DicsountPrice != Convert.ToDecimal(0.00))
+                                        {
+                                            <span class="aa-product-view-price">Precio: @Model.DicsountPrice.Value.ToString()</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="aa-product-view-price">Precio: @Model.SellingPrice.ToString()</span>
+                                        }
+                                    </div>
+                                    <p>
+                                        <a href="~/Product/Like/@Model.Id" class="btn btn-success btn-xs">Me Gusta (@Model.Like.Value.ToString() gusto)</a>
+                                    </p>
+                                    <h4><i class="fa fa-eye">@Model.Hit.Value.ToString()</i></h4>
+                                    <div class="aa-prod-view-size">
+                                        <a href="~/Product/Category/@Model.CategoryId">Categoría: @Model.Category.Name</a>
+                                        <a href="~/Product/Subcategory/@Model.SubcategoryId">Tipo: @Model.Subcategory.Name</a>
+                                        <a href="~/Product/Country/@Model.CountryId">País: @Model.Country.Name</a>
+                                        <a href="~/Product/City/@Model.CityId">Ciudad: @Model.City.Name</a>
+                                    </div>
+                                    <div class="aa-prod-quantity">
+                                        <ul>
+                                            <li><a>@Model.Orders.Count() orden en total</a></li>
+                                            <li><a>@Model.Comments.Count() valoraciones en total</a></li>
+                                        </ul>
+                                        @if (Model.CompanyId != null)
+                                        {
+                                            <p class="aa-prod-category">
+                                                Empresa: <a href="~/Product/Company/@Model.CompanyId">@Model.Company.Name</a><br />
+                                                <a href="~/Product/Complain/@Model.Id">Reporte</a>
+                                            </p>
+                                        }
+                                    </div>
+                                    <div class="aa-prod-view-bottom">
+                                        <form action="" method="get">
+                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="@Model.UserId" value="@Model.UserId" />
+                                            @if (Model.CompanyId != null)
+                                            {
+                                                <input type="hidden" class="comp" name="@Model.CompanyId" value="@Model.CompanyId" />
+                                            }
+                                            <input type="hidden" name="w3ls_item" value="@Model.Name" />
+                                            @if (Model.DicsountPrice != null && Model.DicsountPrice != Convert.ToDecimal(0.00))
+                                            {
+                                                <input type="hidden" name="@Model.DicsountPrice.Value" value="@Model.DicsountPrice.Value" />
+                                            }
+                                            else
+                                            {
+                                                <input type="hidden" name="@Model.SellingPrice" value="@Model.SellingPrice" />
+                                            }
+                                            @if (User.Identity.IsAuthenticated == true)
+                                            {
+                                                <button type="button" class="aa-add-card-btn" name="@Model.Id"><span class="fa fa-shopping-cart"></span>Añadir al Carrito</button>
+                                            }
+                                            else
+                                            {
+                                                <a class="aa-add-card-btn"><span class="fa fa-shopping-cart"></span>Añadir al Carrito</a>
+                                            }
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aa-product-details-bottom">
+                        <ul class="nav nav-tabs" id="myTab2">
+                            <li><a href="#description" data-toggle="tab">Detalles Producto</a></li>
+                            <li><a href="#info" data-toggle="tab">Información Producto</a></li>
+                            <li><a href="#contact" data-toggle="tab">Contacto-Ubicación</a></li>
+                            <li><a href="#review" data-toggle="tab">Comentarios</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="description">
+                                <p>@Model.Desc</p>
+                            </div>
+                            <div class="tab-pane fade" id="info">
+                                @{
+                                    Html.RenderAction("_ProductDetail", "Home", new { id = Model.Id });
+                                }
+                            </div>
+                            <div class="tab-pane fade" id="contact">
+                                @if (Model.CompanyId != null)
+                                {
+                                    <p><a href="~/Company/Detail/@Model.CompanyId">@Model.Company.Name</a></p>
+                                }
+                                <ul>
+                                    @if (Model.CompanyId != null)
+                                    {
+                                        <li>@Model.Company.City.Name</li>
+                                        <li>@Model.Company.Country.Name</li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade " id="review">
+                                <div class="aa-product-review-area">
+                                    <h4>Comentarios de @Model.Name</h4>
+                                    <ul class="aa-review-nav">
+                                        @{
+                                            Html.RenderAction("_ProductComment", "Comment", new { id = Model.Id });
+                                        }
+                                    </ul>
+                                    <h4>Deja un Comentario</h4>
+                                    <h6 style="color:darkred">Campos marcados con * son obligatorios</h6>
+                                    @{
+                                        Html.RenderAction("_CreateComment", "Product");
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aa-product-related-item">
+                        <h3>También Puedes Ver</h3>
+                        @{
+                            Html.RenderAction("_RandomProduct", "Home");
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-subscribe-area">
+                    @{
+                        Html.RenderAction("_CompanyVideoAd", "Home");
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

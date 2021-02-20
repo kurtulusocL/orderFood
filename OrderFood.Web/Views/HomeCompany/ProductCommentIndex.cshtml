@@ -1,0 +1,39 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Comment>
+@{
+    ViewBag.Title = "Comentarios Para Su Producto";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="email-inbox-header">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="email-title"><span class="icon"><i class="fas fa-inbox"></i></span> @ViewBag.Title </div>
+            </div>
+        </div>
+    </div>
+    <div class="email-list">
+        @foreach (var item in Model)
+        {
+            <div class="email-list-item email-list-item--unread">
+                <div class="email-list-detail">
+                    <span class="date float-right"><span class="icon"><i class="fas fa-paperclip"></i> </span>@item.CreatedDate.ToShortDateString()</span><span class="from">@item.NameSurname</span>
+                    <p class="msg">Comentario: @item.Text</p>
+                    @if (item.ProductId != null)
+                    {
+                        <p class="msg">
+                            Nombre del Producto: @item.Product.Name
+                        </p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <div class="pagination" align="center">
+        <div class="pagination-large">
+            @Html.PagedListPager(Model, Page => Url.Action("ProductCommentIndex", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+        </div>
+    </div>
+</div>

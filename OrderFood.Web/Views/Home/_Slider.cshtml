@@ -1,0 +1,16 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Slider>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <div class="seq-model">
+            <img data-seq src="~/img/slider/@item.Photo" style="max-height:550px;max-width:1400px;min-height:550px;min-width:1400px" title="@item.Title" alt="@item.Photo" />
+        </div>
+        <div class="seq-title">
+            <span data-seq>@item.Title</span>           
+        </div>
+    </li>
+}

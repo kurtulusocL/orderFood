@@ -1,0 +1,22 @@
+﻿@model OrderFood.Data.Identity.ApplicationUser
+@{
+    Layout = null;
+}
+
+<div class="card-body">
+    <div class="user-avatar text-center d-block">
+        @{
+            Html.RenderAction("_ProfilePhotoHome", "HomeCompany");
+        }
+    </div>
+    <div class="text-center">
+        @if (Model.NameLastname != null)
+        {
+            <h2 class="font-24 mb-0">@Model.NameLastname</h2>
+        }
+        @if (Model.RespondTitle != null)
+        {
+            <p>@Model.RespondTitle</p>
+        }
+    </div>
+</div>

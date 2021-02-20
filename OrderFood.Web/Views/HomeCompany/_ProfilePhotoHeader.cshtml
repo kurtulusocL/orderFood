@@ -1,0 +1,13 @@
+﻿@model OrderFood.Entity.Models.ProfilePhoto
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    <img src="~/img/profile/@Model.Photo" style="max-height:45px;max-width:45px;min-height:45px;min-width:45px" alt="@Model.Photo" class="user-avatar-md rounded-circle">
+}
+else
+{
+    <img src="~/img/Logo 3.png" style="max-height:45px;max-width:45px;min-height:45px;min-width:45px" alt="img" class="user-avatar-md rounded-circle">
+}

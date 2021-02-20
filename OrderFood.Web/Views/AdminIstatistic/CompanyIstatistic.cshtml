@@ -1,0 +1,51 @@
+﻿@model OrderFood.Entity.Models.Company
+@{
+    ViewBag.Title = "Company Statistics";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel tasks-widget">
+                    <header class="panel-heading">
+                        <div class=" add-task-row">
+                            @ViewBag.Title <a class="btn btn-primary btn-sm pull-right" href="~/AdminIstatistic/CompanyList">Homepage</a>
+                        </div>                      
+                    </header>
+                    <div class="panel-body">
+                        <div class="task-content">
+                            <ul class="task-list">
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Company Product</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/CompanyProduct/@Model.Id" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Some Numeral of the Company</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/CompanyInfoIstatistic/@Model.Id" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Popularity Numeral</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/CompanyPopularity/@Model.Id" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>                                
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,73 @@
+﻿@model OrderFood.Entity.Models.Order
+@{
+    ViewBag.Title = "Order Detail Information";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            @ViewBag.Title  - <a href="~/Order/kurtulusocL" class="btn btn-primary btn-xs">Active Order List</a> - @if (User.IsInRole("Admin") || User.IsInRole("Asistant"))
+                            {
+                                <a href="~/Order/Delete/@Model.Id" class="btn btn-danger btn-xs" onclick="return confirm('Emin Misiniz ?')"> Delete Order</a>
+                            }
+                            else
+                            {
+                                <span>you have no authority.</span>
+                            }
+                        </header>
+                        <table class="table table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <td>Discount Price</td>
+                                    <td>Interaction</td>
+                                    <td>In Box</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@Model.UserId</td>
+                                    <td>
+                                        @if (Model.ProductId != null)
+                                        {
+                                            @Model.Product.DicsountPrice.Value.ToString()
+                                        }
+                                        else
+                                        {
+                                            <span>No discount.</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (Model.Hit != null)
+                                        {
+                                            @Model.Hit.Value.ToString()
+                                        }
+                                        else
+                                        {
+                                            <span>The order has not been reviewed yet.</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (Model.InBox == true)
+                                        {
+                                            <span>The product is in the basket.</span>
+                                        }
+                                        else
+                                        {
+                                            <span>The product was removed from the basket or ordered.</span>
+                                        }
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Company>
+@{
+    ViewBag.Title = "Empresas Más Populares en Tu Ciudad";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="dashboard-influence">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h3 class="mb-2">@ViewBag.Title</h3>                   
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="~/HomeUser/Index" class="breadcrumb-link">Inicio</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-block">
+                    <h3 class="section-title">@ViewBag.Title</h3>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card campaign-card text-center">
+                        <div class="card-body">
+                            <div class="campaign-img"><img src="~/img/logo/@item.Logo" style="max-height:90px;max-width:90px;min-height:90px;min-width:90px" alt="@item.Logo" title="@item.Name" class="user-avatar-xl"></div>
+                            <div class="campaign-info">
+                                <h3 class="mb-1">@item.Name</h3>
+                                <p class="mb-3">En total @item.Orders.Count() ordenar y vender.</p>
+                                <p class="mb-1">En total:<span class="text-dark font-medium ml-2">@item.Like.Value.ToString() gusto</span></p>
+                                <p>En total: <span class="text-dark font-medium ml-2">@item.Hit.Value.ToString() interacción</span></p>
+                                <a href="~/Company/Detail/@item.Id">Detalle de la Empresa </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

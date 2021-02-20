@@ -1,0 +1,11 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Picture>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <a class="aa-cartbox-img" href="#">
+        <img src="~/img/foto/@item.ImageUrl" style="max-height:80px;max-width:60px;min-width:60px;min-height:80px" alt="@item.ImageUrl">
+    </a>
+}

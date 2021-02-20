@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Set to Cookie";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (User.IsInRole("Admin,Asistant"))
+{
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            @ViewBag.Title
+                        </header>
+                        <div class="panel-body">
+                            <form role="form" action="" method="post" class="form-horizontal tasi-form">
+                                @Html.AntiForgeryToken()
+                                <div class="form-group has-success">
+                                    <label class="col-lg-2 control-label">Cookie Name</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" placeholder="" name="CookieAdi" id="f-name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group has-error">
+                                    <label class="col-lg-2 control-label">Cookie Value</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" placeholder="" name="CookieDegeri" id="l-name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="btn btn-danger" type="submit">Save</button>
+                                        <button class="btn btn-default" type="button">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+}
+else
+{
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            @ViewBag.Title
+                        </header>
+                        <div class="panel-body">
+                            <span>you have no authority.</span>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+}

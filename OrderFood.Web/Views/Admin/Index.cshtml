@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = "Admin Homepage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    TempData["error"] = "You are not authorized to view this page.";
+}
+
+@if (User.IsInRole("Admin") || User.IsInRole("Asistant") || User.IsInRole("Helper"))
+{
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <aside class="profile-nav col-lg-3">
+                    @{
+                        Html.RenderAction("_Information", "Admin");
+                    }
+                </aside>
+                <aside class="profile-info col-lg-9">
+                    <section class="panel">
+                        <div class="bio-graph-heading">
+                            Talih, sadece cesurlara yardım eder ve unutma ki vicdan, insanın içindeki tanrıdır. - Fortune, helps only those who are brave; and do not forget that the conscience is a god inside to peoples. - La fortuna, solo ayuda a los valientes; y no olvides que la conciencia es un dios dentro de los pueblos.
+                        </div>
+                        <div class="panel-body bio-graph-info">
+                            <h1>Your Registered Information</h1>
+                            @{
+                                Html.RenderAction("_LongInformation", "Admin");
+                            }
+                        </div>
+                    </section>
+                </aside>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-6">
+                        <div class="panel-group m-bot20" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                            Incoming Comments
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse">
+                                    @{
+                                        Html.RenderAction("_LastCommentList", "Admin");
+                                    }
+                                    <hr />
+                                    <a href="~/Comment/kurtulusocL" class="btn btn-primary btn-xs" target="_blank">Look at All</a>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                            Incoming Complaints
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                    @{
+                                        Html.RenderAction("_LastComplainList", "Admin");
+                                    }
+                                    <hr />
+                                    <a href="~/Complain/kurtulusocL" class="btn btn-primary btn-xs" target="_blank">Look at All</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel-group m-bot20" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                           Last Users
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse">
+                                    @{
+                                        Html.RenderAction("_LastUserList", "Admin");
+                                    }
+                                    <hr />
+                                    <a href="~/Admin/UserList" class="btn btn-primary btn-xs" target="_blank">Look at All</a>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                            Latest Member Companies
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFive" class="panel-collapse collapse">
+                                    @{
+                                        Html.RenderAction("_LastCompanyList", "Admin");
+                                    }
+                                    <hr />
+                                    <a href="~/Company/kurtulusocL" class="btn btn-primary btn-xs" target="_blank">Look at All</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-group m-bot20" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                                        Last Saved Foods
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseSeven" class="panel-collapse collapse">
+                                @{
+                                    Html.RenderAction("_LastProductList", "Admin");
+                                }
+                                <hr />
+                                <a href="~/Product/kurtulusocL" class="btn btn-primary btn-xs" target="_blank">Look at All</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-group m-bot20" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
+                                        Last Orders
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseNine" class="panel-collapse collapse">
+                                @{
+                                    Html.RenderAction("_LastOrderList", "Admin");
+                                }
+                                <hr />
+                                <a href="~/Order/kurtulusocL" class="btn btn-primary btn-xs" target="_blank">Look at All</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-group m-bot20" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">
+                                        Membership Cancellation Requests
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTen" class="panel-collapse collapse">
+                                @{
+                                    Html.RenderAction("_LastCancelRequestList", "Admin");
+                                }
+                                <hr />
+                                <a href="~/CancelRequest/kurtulusocL" class="btn btn-primary btn-xs" target="_blank">Look at All</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+}
+else
+{
+    @TempData["error"]
+}

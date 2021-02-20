@@ -1,0 +1,11 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Country>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    {
+        Html.RenderAction("_CompanyCountryIstatisticHome", "HomeCompany", new { id = item.Id });
+    }
+}

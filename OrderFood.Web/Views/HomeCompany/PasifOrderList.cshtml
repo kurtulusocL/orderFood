@@ -1,0 +1,137 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Order>
+@{
+    ViewBag.Title = "Todos Los Pedidos Respondidos";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">@ViewBag.Title</h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/UserProfile" class="breadcrumb-link">Perfil de la Compañía</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">
+                    @ViewBag.Title
+                </h5>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered first">
+                            <thead>
+                                <tr>
+                                    <th>Nombre-Apellido</th>
+                                    <th>Número de Teléfono</th>
+                                    <th>Dirección de Entrega</th>
+                                    <th>Condición</th>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Precio Total</th>
+                                    <th>Preferencia de Pago</th>
+                                    <th>Fecha de Orden</th>
+                                    <th>Actas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.NameSurname</td>
+                                        <td>@item.PhoneNumber</td>
+                                        <td>@item.Address</td>
+                                        <td>
+                                            @if (item.IsSent == true)
+                                            {
+                                                <strong style="color:darkblue">En Entrega</strong>
+                                            }
+                                            else
+                                            {
+                                                <strong style="color:darkred">Preparándose</strong>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.ProductId != null)
+                                            {
+                                                @item.Product.Name
+                                            }
+                                        </td>
+                                        <td>@item.Piece</td>
+                                        <td>
+                                            @if (item.ProductId != null)
+                                            {
+                                                if (item.Product.DicsountPrice != null && item.Product.DicsountPrice != Convert.ToDecimal(0.00))
+                                                {
+                                                    @item.Product.DicsountPrice.Value.ToString()
+                                                }
+                                                else
+                                                {
+                                                    @item.Product.SellingPrice.ToString()
+                                                }
+                                            }
+                                        </td>
+                                        <td>@item.TotalPrice.ToString()</td>
+                                        <td>@item.Payment.Name</td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td>
+                                            @if (item.IsSent == true)
+                                            {
+                                                <a href="~/CompanyCreate/DeActiveSent/@item.Id" class="btn btn-info btn-xs">Enviar Cancelar</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="~/CompanyCreate/ActiveSent/@item.Id" class="btn btn-success btn-xs">En Entrega</a>
+                                            }
+                                            @if (item.IsConfirmed == true)
+                                            {
+                                                <a href="~/CompanyCreate/DeActiveOrder/@item.Id" class="btn btn-success btn-xs">Orden Pasiva</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="~/CompanyCreate/ActiveOrder/@item.Id" class="btn btn-success btn-xs">Orden Activa</a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Nombre-Apellido</th>
+                                    <th>Número de Teléfono</th>
+                                    <th>Dirección de Entrega</th>
+                                    <th>Condición</th>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Precio Total</th>
+                                    <th>Preferencia de Pago</th>
+                                    <th>Fecha de Orden</th>
+                                    <th>Actas</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("PasifOrderList", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

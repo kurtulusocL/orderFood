@@ -1,0 +1,61 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Company>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="media influencer-profile-data d-flex align-items-center p-2">
+                        <div class="mr-4">
+                            <img src="~/img/logo/@item.Logo" title="@item.Name" style="max-height:90px;max-width:90px;min-height:90px;min-width:90px;" alt="@item.Logo" class="user-avatar-lg">
+                        </div>
+                        <div class="media-body ">
+                            <div class="influencer-profile-data">
+                                <h3 class="m-b-10">@item.Title</h3>
+                                <p>
+                                    <span class="m-r-20 d-inline-block">
+                                        Fecha de Publicación
+                                        <span class="m-l-10 text-primary">@item.CreatedDate.ToShortDateString()</span>
+                                    </span>
+                                    <span class="m-r-20 d-inline-block">
+                                        Ciudad
+                                        <span class="m-l-10 text-secondary">@item.City.Name</span>
+                                    </span>
+                                    <span class="m-r-20 d-inline-block">
+                                        Tipo <span class="m-l-10  text-info">@item.Kind.Name</span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-top card-footer p-0">
+            <div class="campaign-metrics d-xl-inline-block">
+                <h4 class="mb-0">@item.Hit.Value.ToString()</h4>
+                <p>Interacción</p>
+            </div>
+            <div class="campaign-metrics d-xl-inline-block">
+                <h4 class="mb-0">@item.Like.Value.ToString()</h4>
+                <p>Gusto</p>
+            </div>
+            <div class="campaign-metrics d-xl-inline-block">
+                <h4 class="mb-0">@item.Comments.Count()</h4>
+                <p>Comentario</p>
+            </div>
+            <div class="campaign-metrics d-xl-inline-block">
+                <h4 class="mb-0">@item.Products.Count()</h4>
+                <p>Producto</p>
+            </div>
+            <div class="campaign-metrics d-xl-inline-block">
+                <h4 class="mb-0">@item.Orders.Count()</h4>
+                <p>Orden</p>
+            </div>
+        </div>
+    </div>
+}

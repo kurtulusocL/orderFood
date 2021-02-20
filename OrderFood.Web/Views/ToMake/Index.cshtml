@@ -1,0 +1,71 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.ToMake>
+@{
+    ViewBag.Title = "Active Task Homepage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel tasks-widget">
+                        <header class="panel-heading">
+                            @ViewBag.Title
+                        </header>
+                        <div class="panel-body">
+                            <div class="task-content">
+                                <ul class="task-list">
+                                    @foreach (var item in Model)
+                                    {
+                                        <li>
+                                            <div class="task-checkbox">
+                                                @if (item.IsFinished == true)
+                                                {
+                                                    <a href="~/ToMake/KeepTask/@item.Id" class="btn btn-primary btn-xs">
+                                                        Done
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="~/ToMake/Done/@item.Id" class="btn btn-info btn-xs">
+                                                        Continue
+                                                    </a>
+                                                }
+                                            </div>
+                                            <div class="task-title">
+                                                <span class="task-title-sp">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; @item.Title</span>
+                                                <span class="badge badge-sm label-success">Last Date: @item.TillWhen.ToLongDateString()</span>
+                                                <span class="badge badge-sm label-primary">Task => @item.NameSurname</span>
+                                                @if (item.IsFinished == true)
+                                                {
+                                                    <span class="badge badge-sm label-inverse">Mission: Completed </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge badge-sm label-warning">Mission: Not Imposible :) </span>
+                                                }
+                                                <div class="pull-right">
+                                                    <a class="btn btn-primary btn-xs" href="~/ToMake/Detail/@item.Id"><i class="icon-info"></i></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class=" add-task-row">
+                                <div class="pagination" align="center">
+                                    <div class="pagination-large">
+                                        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

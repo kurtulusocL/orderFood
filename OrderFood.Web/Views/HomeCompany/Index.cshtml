@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+    TempData["error"] = "No tienes autorización para ver esta página.";
+}
+
+@if (User.IsInRole("Tienda"))
+{
+    <div class="influence-profile">
+        <div class="container-fluid dashboard-content ">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h3 class="mb-2">Hola @Session["KullanıcıAdıSoyadı"]</h3>
+                        <div class="page-breadcrumb">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="~/HomeCompany/UserProfile" class="btn btn-primary btn-xs">Tu Perfil</a></li>
+                                    <li class="breadcrumb-item active" style="color:black" aria-current="page"><strong>@ViewBag.Title</strong></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
+                    <div class="card">
+                        @{
+                            Html.RenderAction("_ShortInformation", "HomeCompany");
+                        }
+                        @{
+                            Html.RenderAction("_UserInformationHome", "HomeCompany");
+                        }
+                        <div class="card-body border-top">
+                            <h3 class="font-16">Personal</h3>
+                            <div>
+                                @{
+                                    Html.RenderAction("_UserAttribute", "HomeCompany");
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">
+                    <div class="influence-profile-content pills-regular">
+                        <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-campaign-tab" data-toggle="pill" href="#pills-campaign" role="tab" aria-controls="pills-campaign" aria-selected="true">Tus Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-packages-tab" data-toggle="pill" href="#pills-packages" role="tab" aria-controls="pills-packages" aria-selected="false">Sus Compañía Por País</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-packages-tab" data-toggle="pill" href="#pills-city" role="tab" aria-controls="pills-packages" aria-selected="false">Tus Compañía Por Ciudad</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-campaign" role="tabpanel" aria-labelledby="pills-campaign-tab">
+                                <div class="section-block">
+                                    <h3 class="section-title">Su Lista De Productos</h3>
+                                </div>
+                                @{
+                                    Html.RenderAction("_CompanyIstatisticHome", "HomeCompany");
+                                }
+                            </div>
+                            <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-packages-tab">
+                                <div class="section-block">
+                                    <h3 class="section-title">Sus Compañía En Los Países</h3>
+                                </div>
+                                @{
+                                    Html.RenderAction("_CompanyProductCountry", "HomeCompany");
+                                }
+                            </div>
+                            <div class="tab-pane fade" id="pills-city" role="tabpanel" aria-labelledby="pills-city-tab">
+                                <div class="section-block">
+                                    <h3 class="section-title">Tus Compañía En Las Ciudades</h3>
+                                </div>
+                                @{
+                                    Html.RenderAction("_CompanyProductCity", "HomeCompany");
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="influence-profile">
+        <div class="container-fluid dashboard-content ">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h3 class="mb-2">@TempData["error"]</h3>
+                        <div class="page-breadcrumb">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active" aria-current="page">@TempData["error"]</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @TempData["error"]
+        </div>
+    </div>
+}

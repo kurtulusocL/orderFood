@@ -1,0 +1,108 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Picture>
+@{
+    ViewBag.Title = "Lista De Imágenes De La Compañía";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">@ViewBag.Title</h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/UserProfile" class="breadcrumb-link">Perfil de la Compañía</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">
+                    @ViewBag.Title
+                </h5>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered first">
+                            <thead>
+                                <tr>
+                                    <th width="80"> Imagen</th>
+                                    <th>Titulo de la Imagen</th>
+                                    <th>Posición de la Imagen</th>
+                                    <th>Fecha de Registro</th>
+                                    <th>Fecha Actualizada</th>
+                                    <th>Actas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="80"><img src="~/img/foto/@item.ImageUrl" style="max-height:140px;max-width:90px;min-height:140px;min-width:90px;" class="img-circle" alt="@item.ImageUrl" /></td>
+                                        <td>
+                                            @if (item.CompanyId != null)
+                                            {
+                                                @item.Company.Title
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.CompanyId != null)
+                                            {
+                                                <strong style="color:darkblue">Firma Resmi: @item.Company.Name</strong>
+                                            }
+                                        </td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td>
+                                            @if (item.UpdatedDate != null)
+                                            {
+                                                @item.UpdatedDate.Value.ToShortDateString()
+                                            }
+                                            else
+                                            {
+                                                <span>-</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.IsConfirmed == true)
+                                            {
+                                                <a href="~/CompanyCreate/DeActiveCompanyPicture/@item.Id" class="btn btn-warning btn-xs">Suspender</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="~/CompanyCreate/ActiveCompanyPicture/@item.Id" class="btn btn-warning btn-xs">Publicar</a>
+                                            }
+                                            <a href="~/CompanyCreate/DeleteCompanyPicture/@item.Id" class="btn btn-danger btn-xs" onclick="return confirm('¿Estás seguro ?')">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th width="80"> Imagen</th>
+                                    <th>Titulo de la Imagen</th>
+                                    <th>Posición de la Imagen</th>
+                                    <th>Fecha de Registro</th>
+                                    <th>Fecha Actualizada</th>
+                                    <th>Actas</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("ControlCompanyPicture", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,142 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Product>
+@{
+    Layout = null;
+}
+
+<ul class="aa-product-catg aa-related-item-slider">
+    @foreach (var item in Model)
+    {
+        <li>
+            <figure>
+                @{
+                    Html.RenderAction("_ProductPhotoCompanyDetail", "Home", new { id = item.Id });
+                }
+                <form action="" method="get">
+                    <input type="hidden" name="add" value="1" />
+                    <input type="hidden" name="@item.UserId" value="@item.UserId" />
+                    @if (item.CompanyId != null)
+                    {
+                        <input type="hidden" class="comp" name="@item.CompanyId" value="@item.CompanyId" />
+                    }
+                    <input type="hidden" name="w3ls_item" value="@item.Name" />
+                    @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                    {
+                        <input type="hidden" name="@item.DicsountPrice.Value" value="@item.DicsountPrice.Value" />
+                    }
+                    else
+                    {
+                        <input type="hidden" name="@item.SellingPrice" value="@item.SellingPrice" />
+                    }
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+                        <button type="button" class="aa-add-card-btn" name="@item.Id"><span class="fa fa-shopping-cart"></span>Añadir al Carrito</button>
+                    }
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <a class="aa-add-card-btn"><span class="fa fa-shopping-cart"></span>Iniciar Sesión o Registrarse</a>
+                    }
+                </form>
+                <figcaption>
+                    <h4 class="aa-product-title"><a href="~/Product/Detail/@item.Id">@item.Name</a></h4>
+                    <h5 class="aa-product-title"><a>@item.Country.Name - @item.City.Name</a></h5>
+                    @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                    {
+                        <span class="aa-product-price"><del>@item.SellingPrice.ToString()</del></span>
+                        <span class="aa-product-price">@item.DicsountPrice.Value.ToString()</span>
+                    }
+                    else
+                    {
+                        <span class="aa-product-price">@item.SellingPrice.ToString()</span>
+                    }
+                </figcaption>
+            </figure>
+            <div class="aa-product-hvr-content">
+                <a href="#" data-toggle="tooltip" data-placement="top" title="@item.Like.Value.ToString()"><span class="fa fa-heart-o"></span></a>
+                <a href="#" data-toggle="tooltip" data-placement="top" title="@item.Hit.Value.ToString()"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a href="#" data-toggle2="tooltip" data-placement="top" title="Detalle" data-toggle="modal" data-target="#@item.Id"><span class="fa fa-search"></span></a>
+            </div>
+            <span class="aa-badge aa-sale">@item.Orders.Count() Ordenar</span>
+        </li>
+    }
+</ul>
+
+@foreach (var item in Model)
+{
+    <div class="modal fade" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="aa-product-view-slider">
+                                <div class="simpleLens-gallery-container" id="demo-1">
+                                    <div class="simpleLens-container">
+                                        <div class="simpleLens-big-image-container">
+                                            @{
+                                                Html.RenderAction("_ProductPhotoModalCompanyDetail", "Home", new { id = item.Id });
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="aa-product-view-content">
+                                <h3>@item.Name</h3>
+                                <div class="aa-price-block">
+                                    @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                                    {
+                                        <span class="aa-product-view-price">@item.DicsountPrice.Value.ToString()</span>
+                                    }
+                                    else
+                                    {
+                                        @item.SellingPrice.ToString()
+                                    }
+                                    <p class="aa-product-avilability">@item.Country.Name - @item.City.Name</p>
+                                </div>
+                                <p>@item.Title</p>
+                                <div class="aa-prod-view-size">
+                                    <a>Gusto: @item.Like.Value.ToString()</a>
+                                    <a>Interacción: @item.Hit.Value.ToString()</a>
+                                </div>
+                                <div class="aa-prod-view-size">
+                                    <a>Comentario: @item.Comments.Count()</a>
+                                    <a>Orden: @item.Orders.Count()</a>
+                                </div>
+                                <div class="aa-prod-view-bottom">
+                                    <form action="" method="get">
+                                        <input type="hidden" name="add" value="1" />
+                                        <input type="hidden" name="@item.UserId" value="@item.UserId" />
+                                        @if (item.CompanyId != null)
+                                        {
+                                            <input type="hidden" class="comp" name="@item.CompanyId" value="@item.CompanyId" />
+                                        }
+                                        <input type="hidden" name="w3ls_item" value="@item.Name" />
+                                        @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                                        {
+                                            <input type="hidden" name="@item.DicsountPrice.Value" value="@item.DicsountPrice.Value" />
+                                        }
+                                        else
+                                        {
+                                            <input type="hidden" name="@item.SellingPrice" value="@item.SellingPrice" />
+                                        }
+                                        @if (User.Identity.IsAuthenticated == true)
+                                        {
+                                            <button type="button" class="aa-add-card-btn" name="@item.Id"><span class="fa fa-shopping-cart"></span>Añadir al Carrito</button>
+                                        }
+                                        @if (User.Identity.IsAuthenticated == false)
+                                        {
+                                            <a class="aa-add-card-btn"><span class="fa fa-shopping-cart"></span>Iniciar Sesión o Registrarse</a>
+                                        }
+                                    </form>
+                                    <a href="~/Product/Detail/@item.Id" class="aa-add-to-cart-btn">Detalle</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Company>
+@{
+    ViewBag.Title = "Company Product Statistics";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <section>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row invoice-list">
+                        <div class="text-center corporate-id">
+                            <strong>@ViewBag.Title</strong>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Company Name</th>
+                                <th>Product</th>
+                                <th>Delivery</th>
+                                <th>Register Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.Products.Count()</td>
+                                    <td>@item.Orders.Count()</td>
+                                    <td>@item.CreatedDate.ToLongDateString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="text-center invoice-btn">
+                        <a class="btn btn-success btn-xs" href="~/AdminIstatistic/CompanyList"> Back </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

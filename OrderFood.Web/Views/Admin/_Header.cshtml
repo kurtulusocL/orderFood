@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="top-nav ">
+    <ul class="nav pull-right top-menu">
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <img alt="" src="~/img/Logo 3.png" style="max-height:35px;max-width:35px;min-height:35px;min-width:35px;">
+                <span class="username">@Session["KullanıcıAdıSoyadı"]</span>
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu extended logout">
+                <div class="log-arrow-up"></div>
+                <li><a href="~/ToMake/Index"><i class=" icon-suitcase"></i>ToDo List</a></li>
+                <li><a href="~/Account/Logout"><i class="icon-key"></i> Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

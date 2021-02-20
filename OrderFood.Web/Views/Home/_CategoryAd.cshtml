@@ -1,0 +1,20 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Ad>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <a class="aa-cartbox-img" href="@item.Website" target="_blank">
+            <img src="~/img/reklam/@item.Photo" title="@item.CompanyName" style="max-height:80px;max-width:80px;min-height:80px;min-width:80px" alt="@item.Photo">
+        </a>
+        <div class="aa-cartbox-info">
+            <h4><a href="@item.Website" target="_blank">@item.CompanyName</a></h4>
+            <p>@item.Title</p>
+        </div>
+        @{ 
+            Html.RenderAction("_HitCount", "Ad", new { id = item.Id });
+        }
+    </li>
+}

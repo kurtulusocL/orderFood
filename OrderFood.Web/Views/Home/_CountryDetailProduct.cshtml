@@ -1,0 +1,39 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Product>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <figure>
+            @{
+                Html.RenderAction("_CountryDetailProductPhoto", "Home", new { id = item.Id });
+            }
+            <a class="aa-add-card-btn" href="~/Product/Detail/@item.Id">Detalle</a>
+            <figcaption>
+                <h4 class="aa-product-title"><a href="~/Product/Detail/@item.Id">@item.Name</a></h4>
+                <h4 class="aa-product-title"><a href="~/Product/Country/@item.CountryId">@item.Country.Name</a></h4>
+                @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                {
+                    <span class="aa-product-price">
+                        <span class="aa-product-price">@item.DicsountPrice.ToString()</span>
+                    </span><span class="aa-product-price">
+                        <del>
+                            <span class="aa-product-price">@item.SellingPrice.ToString()</span>
+                        </del>
+                    </span>
+                }
+                else
+                {
+                    <span class="aa-product-price">@item.SellingPrice.ToString()</span>
+                }
+            </figcaption>
+        </figure>
+        <div class="aa-product-hvr-content">
+            <a href="#" data-toggle="tooltip" data-placement="top" title="@item.Like.Value.ToString()"><span class="fa fa-heart-o"></span></a>
+            <a href="#" data-toggle="tooltip" data-placement="top" title="@item.Hit.Value.ToString()"><span class="glyphicon glyphicon-eye-open"></span></a>            
+        </div>
+        <span class="aa-badge aa-sale">@item.Orders.Count() Ordenar</span>
+    </li>
+}

@@ -1,0 +1,105 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Product>
+@{
+    ViewBag.Title = "Active Product List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            @ViewBag.Title - <a href="~/Product/ProductList" class="btn btn-primary btn-xs">Product List</a>
+                        </header>
+                        <table class="table table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Interaction</th>
+                                    <th>Like</th>
+                                    <th>Price</th>
+                                    <th>Discount</th>
+                                    <th>Category/Kind</th>
+                                    <th>Country/City</th>
+                                    <th>Company</th>
+                                    <th>Order/Photo</th>
+                                    <th>Comment/Complain</th>
+                                    <th>Add Date</th>
+                                    <th>Operations</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.Hit.Value.ToString()</td>
+                                        <td>@item.Like.Value.ToString()</td>
+                                        <td>@item.SellingPrice.ToString()</td>
+                                        <td>
+                                            @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                                            {
+                                                @item.DicsountPrice.Value.ToString()
+                                            }
+                                            else
+                                            {
+                                                <span>-</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="~/Product/CategoryList/@item.CategoryId" class="btn btn-link"><strong>@item.Category.Name</strong></a><br />
+                                            <a href="~/Product/SubcategoryList/@item.SubcategoryId" class="btn btn-link"><strong>@item.Subcategory.Name</strong></a>
+                                        </td>
+                                        <td>
+                                            <a href="~/Product/CountryList/@item.CountryId" class="btn btn-link"><strong>@item.Country.Name</strong></a><br />
+                                            <a href="~/Product/CityList/@item.CityId" class="btn btn-link"><strong>@item.City.Name</strong></a>
+                                        </td>
+                                        <td>
+                                            @if (item.CompanyId != null)
+                                            {
+                                                <a href="~/Product/CompanyList/@item.CompanyId" class="btn btn-link"><strong>@item.Company.Name</strong></a>
+                                            }
+                                        </td>
+                                        <td>
+                                            <strong>Order: @item.Orders.Count()</strong><br />
+                                            <strong>Photo: @item.Pictures.Count()</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Comment: @item.Comments.Count()</strong><br />
+                                            <strong>Complain: @item.Complains.Count()</strong>
+                                        </td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("Asistant"))
+                                            {
+                                                <a href="~/Product/ProductDetail/@item.Id" class="btn btn-info btn-xs">Detail</a>
+                                                <a href="~/Product/ProductInfo/@item.ProductDetailId" class="btn btn-default btn-xs">Info</a>
+                                                <a href="~/Product/DeActive/@item.Id" class="btn btn-warning btn-xs">Suspend</a>
+                                                <a href="~/Product/Delete/@item.Id" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure ?')">Delete</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="~/Product/ProductDetail/@item.Id" class="btn btn-info btn-xs">Detail</a>
+                                                <a href="~/Product/ProductInfo/@item.ProductDetailId" class="btn btn-default btn-xs">Info</a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("kurtulusocL", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

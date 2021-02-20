@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <meta name="Distribution" content="Global" />
+    <meta name="description" content="search and order for food">
+    <meta name="keywords" content="">
+    <meta name="keywords" content="">
+    <meta name="Rating" content="General" />
+    <meta name="Language" content="Spanish" />
+    <meta name="google" content="nositelinkssearchbox" />
+    <meta name="author" content="provechoo.com" />
+    <link rel="shortcut icon" href="~/img/Logo 3.png" />
+    <title>provechoo.com | @ViewBag.Title</title>
+
+    <link href="~/Content/temp/web/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/temp/web/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/temp/web/alertifyjs/css/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/temp/web/alertifyjs/css/alertify.rtl.min.css" rel="stylesheet" />
+    <link href="~/Content/temp/web/alertifyjs/css/themes/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/temp/web/alertifyjs/css/themes/default.min.css" rel="stylesheet" />
+    <link href="~/Content/temp/web/alertifyjs/css/themes/default.rtl.min.css" rel="stylesheet" />
+    <link href="~/Content/temp/web/alertifyjs/css/themes/semantic.min.css" rel="stylesheet" />
+    <link href="~/Content/temp/web/alertifyjs/css/themes/semantic.rtl.min.css" rel="stylesheet" />
+    <link href="~/Content/temp/web/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/temp/web/css/jquery.simpleLens.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/temp/web/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/temp/web/css/nouislider.css">
+    <link id="switcher" href="~/Content/temp/web/css/theme-color/default-theme.css" rel="stylesheet">
+    <!-- <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet"> -->
+    <link href="~/Content/temp/web/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+    <link href="~/Content/temp/web/css/style.css" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+   
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>   
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div id="wpf-loader-two">
+        <div class="wpf-loader-two-inner">
+            <span>Cargando</span>
+        </div>
+    </div>
+    <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
+    <header id="aa-header">
+        <div class="aa-header-top">
+            <div class="container">
+                @{
+                    Html.RenderAction("_HeaderNavbar", "Home");
+                }
+            </div>
+        </div>
+        <div class="aa-header-bottom">
+            <div class="container">
+                <div class="row">
+                    @{
+                        Html.RenderAction("_HeaderBox", "Home");
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="menu">
+        <div class="container">
+            @{
+                Html.RenderAction("_Navbar", "Home");
+            }
+        </div>
+    </section>
+    @RenderBody()
+    <footer id="aa-footer">
+        <div class="aa-footer-top">
+            <div class="container">
+                @{
+                    Html.RenderAction("_Footer", "Home");
+                }
+            </div>
+        </div>
+        <div class="aa-footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-footer-bottom-area">
+                            <p>2020 - @DateTime.Now.Year <a href="~/Home/Index">provechoo.com</a></p>
+                            <div class="aa-footer-payment">
+                                @{
+                                    Html.RenderAction("_LayoutPayment", "Home");
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @{
+        Html.RenderAction("Login", "UserAccount");
+    }
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>   
+    <script src="~/Scripts/web/box.js"></script>
+    <script src="~/Content/temp/web/alertifyjs/alertify.min.js"></script>
+    <script src="~/Content/temp/web/js/bootstrap.js"></script>
+    <script type="text/javascript" src="~/Content/temp/web/js/jquery.smartmenus.js"></script>
+    <script type="text/javascript" src="~/Content/temp/web/js/jquery.smartmenus.bootstrap.js"></script>
+    <script src="~/Content/temp/web/js/sequence.js"></script>
+    <script src="~/Content/temp/web/js/sequence-theme.modern-slide-in.js"></script>
+    <script type="text/javascript" src="~/Content/temp/web/js/jquery.simpleGallery.js"></script>
+    <script type="text/javascript" src="~/Content/temp/web/js/jquery.simpleLens.js"></script>
+    <script type="text/javascript" src="~/Content/temp/web/js/slick.js"></script>
+    <script type="text/javascript" src="~/Content/temp/web/js/nouislider.js"></script>
+    <script src="~/Content/temp/web/js/custom.js"></script>
+</body>
+</html>

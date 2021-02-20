@@ -1,0 +1,79 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Product>
+@{
+    ViewBag.Title = "Sus Productos";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<div class="container-fluid dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">@ViewBag.Title </h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offset-xl-1 col-xl-10">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
+                <div class="section-block">
+                    <h3>@ViewBag.Title</h3>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-header bg-white text-center p-4 ">
+                            <h3 class="mb-1">@item.Name</h3>
+                            <span class="mb-2 d-block">@item.ProductNo</span>
+                            <h1 class="mb-1"><span class="font-24">@item.SellingPrice</span></h1>
+                            @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                            {
+                                <p>@item.DicsountPrice.Value.ToString()</p>
+                            }
+                            else
+                            {
+                                <p>Sin descuento</p>
+                            }
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled bullet-check font-14  mb-0">
+                                <li>Gusto: @item.Like.Value.ToString()</li>
+                                <li>Interacción: @item.Hit.Value.ToString()</li>
+                                <li>Categoría: @item.Category.Name</li>
+                                <li>Tipo: @item.Subcategory.Name</li>
+                                <li>País: @item.Country.Name</li>
+                                <li>Ciudad: @item.City.Name</li>
+                                <li>Comentario: @item.Comments.Count()</li>
+                                <li>Imagen: @item.Pictures.Count()</li>
+                                <li>Orden: @item.Orders.Count()</li>
+                            </ul>
+                        </div>
+                        <div class="card-body border-top">
+                            <ul class="list-unstyled font-14 ">
+                                <li><span style="color:darkblue">Título/Eslogan del Producto: </span>@item.Title</li>
+                            </ul>
+                            <a href="~/HomeCompany/ProductCommentIndex/@item.Id" class="btn btn-outline-secondary btn-block btn-lg">Comentarios Hechos</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="pagination" align="center">
+            <div class="pagination-large">
+                @Html.PagedListPager(Model, Page => Url.Action("YourProductList", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </div>
+        </div>
+    </div>
+</div>

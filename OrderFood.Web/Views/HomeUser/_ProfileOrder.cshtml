@@ -1,0 +1,68 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Order>
+@{
+    Layout = null;
+}
+
+<table class="table">
+    <thead>
+        <tr class="border-0">
+            <th class="border-0">Empresa</th>
+            <th class="border-0">Nombre del Producto</th>
+            <th class="border-0">Cantidad</th>
+            <th class="border-0">Descuento</th>
+            <th class="border-0">Precio del Producto</th>
+            <th class="border-0">Precio Total</th>
+            <th class="border-0">Fecha de Orden</th>
+            <th class="border-0">Dirección de Pedido</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.CompanyId != null)
+                    {
+                        @item.Company.Name
+                    }
+                </td>
+                <td>
+                    @if (item.ProductId != null)
+                    {
+                        @item.Product.Name
+                    }
+                </td>
+                <td>@item.Piece</td>
+                <td>
+                    @if (item.Product.DicsountPrice != null && item.Product.DicsountPrice != Convert.ToDecimal(0.00))
+                    {
+                        @item.Product.DicsountPrice.Value.ToString()
+                    }
+                    else
+                    {
+                        <span>0</span>
+                    }
+                </td>
+                <td>
+                    @if (item.ProductId != null)
+                    {
+                        if (item.Product.DicsountPrice != null && item.Product.DicsountPrice != Convert.ToDecimal(0.00))
+                        {
+                            @item.Product.DicsountPrice.Value.ToString()
+                        }
+                        else
+                        {
+                            @item.Product.SellingPrice.ToString()
+                        }
+                    }
+                </td>
+                <td>@item.TotalPrice.ToString()</td>
+                <td>@item.CreatedDate.ToShortDateString()</td>
+                <td>@item.Address</td>
+            </tr>
+        }
+        <tr>
+            <th class="border-0"><a href="~/HomeUser/YourOrder" class="btn btn-info btn-xs">Todos Sus Pedidos</a></th>
+        </tr>
+    </tbody>
+</table>

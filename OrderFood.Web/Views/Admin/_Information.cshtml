@@ -1,0 +1,20 @@
+﻿@model OrderFood.Data.Identity.ApplicationUser
+    @{ 
+        Layout = null;
+    }
+
+<section class="panel">
+    <div class="user-heading round">
+        <a href="~/Admin/Index">
+            <img src="~/img/Logo 3.png" style="max-height:85px;max-width:85px;min-height:85px;min-width:85px" title="@Model.NameLastname" alt="img">
+        </a>
+        <h1>Name Surname: @Model.NameLastname</h1>
+        <p>Username: @Model.UserName</p>
+        <p>E-Mail Address: @Model.Email</p>
+        <p>Respond Title: @Model.RespondTitle</p>
+    </div>
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="~/Account/ChangeProfile/@Model.Id"> <i class="icon-edit"></i> Update Profile</a></li>
+        <li class="active"><a href="~/Admin/AdminList"> <i class="icon-list"></i> Admin List</a></li>
+    </ul>
+</section>

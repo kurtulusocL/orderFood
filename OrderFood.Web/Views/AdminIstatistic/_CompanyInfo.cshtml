@@ -1,0 +1,13 @@
+﻿@model OrderFood.Entity.Models.Company
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    <p>
+        <strong> @Model.Name</strong> <br>
+        <strong> @Model.Country.Name</strong> <br>
+        <strong> @Model.City.Name</strong><br>
+    </p>
+}

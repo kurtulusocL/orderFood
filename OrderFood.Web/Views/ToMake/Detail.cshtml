@@ -1,0 +1,41 @@
+﻿@model OrderFood.Entity.Models.ToMake
+@{
+    ViewBag.Title = "Task Detail Information";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                           @ViewBag.Title - <a href="~/ToMake/Index" class="btn btn-primary btn-xs">Task Homepage</a>
+                        </header>
+                        <div class="panel-body profile-activity">
+                            <h5 class="pull-right">@DateTime.Now.ToLongDateString()</h5>
+                            <div class="activity terques">
+                                <span>
+                                    <i class="icon-tasks"></i>
+                                </span>
+                                <div class="activity-desk">
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <div class="arrow"></div>
+                                            <i class=" icon-time"></i>
+                                            <h4>Published: @Model.CreatedDate.ToLongDateString()</h4>
+                                            <p>Task: @Model.Desc</p>
+                                            <hr />
+                                            <h5 style="color:black">For @Model.NameSurname; Last Date: @Model.TillWhen.ToLongDateString()</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>                
+            </div>
+        </section>
+    </section>
+</section>

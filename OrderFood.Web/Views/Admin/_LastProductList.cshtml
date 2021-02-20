@@ -1,0 +1,27 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Product>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="panel-body">
+        <span>Product No: @item.ProductNo</span>
+        <span>Product Name: @item.Name</span>
+        @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+        {
+            <span>Discounted Price: @item.DicsountPrice.Value.ToString()</span>
+        }
+        else
+        {
+            <span>Price: @item.SellingPrice.ToString()</span>
+        }
+        @if (item.CompanyId != null)
+        {
+            <span>Company: @item.Company.Name</span>
+        }
+        <span>@item.Category.Name -  @item.Subcategory.Name</span>
+        <span>@item.Country.Name - @item.City.Name</span>
+        <strong>@item.CreatedDate.ToShortDateString()</strong>
+    </div>
+}

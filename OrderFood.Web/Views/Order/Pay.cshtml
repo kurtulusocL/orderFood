@@ -1,0 +1,139 @@
+﻿@model IEnumerable<OrderFood.Web.Models.SepetItem>
+@{
+    ViewBag.Title = "Tu Página de Pago";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>@ViewBag.Title</h2>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    <li><a href="~/Product/Index">Seguir Comprando</a></li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="cart-view">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cart-view-area">
+                    <div class="cart-view-table">
+                        <form action="">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Nombre del Producto</th>
+                                            <th>Precio</th>
+                                            <th>Descuento</th>
+                                            <th>Disminución</th>
+                                            <th>Total de la Orden</th>
+                                            <th>Incrementar</th>
+                                            <th>El Monto a Pagar</th>
+                                            <th>Empresa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td><a class="remove" href="~/Order/LessPiece/@item.ProductId"><fa class="fa fa-close"></fa></a></td>
+                                                <td>@item.Urun.Name</td>
+                                                <td>
+                                                    @if (item.Urun.DicsountPrice != null && item.Urun.DicsountPrice != Convert.ToDecimal(0.00))
+                                                    {
+                                                        @item.Urun.DicsountPrice.Value.ToString()
+                                                    }
+                                                    else
+                                                    {
+                                                        @item.Urun.SellingPrice.ToString()
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (item.Indirim != null)
+                                                    {
+                                                        @item.Indirim
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>0</span>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("-", "LessPiece", new { id = item.ProductId }, new { @class = "aa-cart-quantity btn btn-warning btn-xs azalt" })
+                                                </td>
+                                                <td id="cardAdet">
+                                                    @Html.TextBoxFor(i => item.Adet, new { @class = "txt", data_id = item.ProductId })
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("+", "MorePiece", new { id = item.ProductId }, new { @class = "aa-cart-quantity btn btn-info btn-xs arttir" })
+                                                </td>
+                                                <td>@item.ToplamFiyat.ToString()</td>
+                                                <td>
+                                                    @if (item.Urun.CompanyId != null)
+                                                    {
+                                                        <strong> @item.Urun.Company.Name</strong>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                        <div class="cart-view-total">
+                            <h4>Total de la Cesta</h4>
+                            <table class="aa-totals-table">
+                                <tbody>
+                                    <tr>
+                                        <th>Cantidad</th>
+                                        <td>@ViewBag.Sepets</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr />
+                            @if (User.Identity.IsAuthenticated == true)
+                            {
+                                <a href="~/Order/CreatePay" class="aa-cart-view-btn">Confirmar Pedido y Pagar</a>
+                            }
+                            else
+                            {
+                                <span>
+                                    Para iniciar sesión si es miembro =><br />
+                                    <a href="~/UserAccount/LoginUser" class="btn btn-success">Usuario</a>
+                                    <a href="~/CompanyAccount/Login" class="btn btn-primary">Empresa</a>
+                                </span>
+                                <hr />
+                                <span>
+                                    Debe ser miembro para realizar un pedido. Para convertirse en miembro =><br />
+                                    <a href="~/UserAccount/Register" class="btn btn-success">Membresía de Usuario</a>
+                                    <a href="~/UserAccount/Register" class="btn btn-primary">Membresía de la Empresa</a>
+                                </span>
+                            }
+                            <a href="~/Country/Index" class="aa-cart-view-btn">Seguir Comprando</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .txt {
+        line-height: 15px;
+        width: 45px !important;
+        height: 30px;
+        font-size: 12px;
+        text-align: center;
+        border: solid 1px #ccc;
+        margin-left: 15px;
+    }
+</style>

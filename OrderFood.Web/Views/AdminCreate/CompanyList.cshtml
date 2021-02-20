@@ -1,0 +1,107 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Company>
+@{
+    ViewBag.Title = "Company List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            @ViewBag.Title - <a href="~/AdminCreate/CompanyCreate" class="btn btn-primary btn-xs">Add a new company</a> - <a href="~/AdminCreate/CompanySocialMediaList" class="btn btn-success btn-xs">Social Media List</a> - <a href="~/AdminCreate/ProductList" class="btn btn-info btn-xs">Product List</a> - <a href="~/AdminCreate/CompanyContactList" class="btn btn-default btn-xs">Contact List</a> - <a href="~/AdminCreate/PictureList" class="btn btn-primary btn-xs">Photo List</a>
+                        </header>
+                        <table class="table table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="80">Logo</th>
+                                    <th>Company Name</th>
+                                    <th>Product</th>
+                                    <th>Interaction/Like</th>
+                                    <th>Country/City</th>
+                                    <th>Kind</th>
+                                    <th>Order/Photo</th>
+                                    <th>Comment/Complain</th>
+                                    <th>Add Date</th>
+                                    <th>Update Date</th>
+                                    <th>Operations</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="80"><img src="~/img/logo/@item.Logo" class="img-responsive" /></td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Products.Count()</td>
+                                        <td>
+                                            <strong>Interaction: @item.Hit.Value.ToString()</strong><br />
+                                            <strong>Like: @item.Like.Value.ToString()</strong>
+                                        </td>
+                                        <td>
+                                            <strong>@item.Country.Name</strong><br />
+                                            <strong>@item.City.Name</strong>
+                                        </td>
+                                        <td><strong>@item.Kind.Name</strong></td>
+                                        <td>
+                                            <strong>Order: @item.Orders.Count()</strong><br />
+                                            <strong>Photo: @item.Pictures.Count()</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Comment: @item.Comments.Count()</strong><br />
+                                            <strong>Complain: @item.Complains.Count()</strong>
+                                        </td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td>
+                                            @if (item.UpdatedDate != null)
+                                            {
+                                                @item.UpdatedDate.Value.ToShortDateString()
+                                            }
+                                            else
+                                            {
+                                                <span>-</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("Asistant"))
+                                            {
+                                                <a href="~/AdminCreate/CompanyEdit/@item.Id" class="btn btn-success btn-xs">Update</a>
+                                                <a href="~/AdminCreate/CompanyPhotoCreate/@item.Id" class="btn btn-primary btn-xs">Add Photo</a>
+                                                <a href="~/AdminCreate/ProductCreate/@item.Id" class="btn btn-info btn-xs">Add Product</a>
+                                                <a href="~/AdminCreate/SocialMediaCreate/@item.Id" class="btn btn-default btn-xs">Add Social Media</a>
+                                                <a href="~/AdminCreate/ContactCreate/@item.Id" class="btn btn-info btn-xs">Add Contact</a>
+                                                if (item.IsConfirmed == true)
+                                                {
+                                                    <a href="~/AdminCreate/DeActiveCompany/@item.Id" class="btn btn-warning btn-xs">Suspend</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="~/AdminCreate/ActiveCompany/@item.Id" class="btn btn-primary btn-xs">Publish</a>
+                                                }
+                                                <a href="~/AdminCreate/DeleteCompany/@item.Id" class="btn btn-danger btn-xs" onclick="return confirm('are you sure ?')">Delete</a>
+                                            }
+                                            else
+                                            {
+                                                <span>you have no authority.</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("CompanyList", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

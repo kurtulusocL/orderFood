@@ -1,0 +1,76 @@
+﻿@model OrderFood.Entity.Models.CompanyContact
+@{
+    ViewBag.Title = "Add Your Company's Contact Information";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <a href="~/AdminCreate/CompanyList" class="btn btn-primary btn-xs">Company List</a>
+                            @if (TempData["message"] != null)
+                            {
+                                <strong style="color:darkblue">@TempData["message"]</strong>
+                            }
+                            else
+                            {
+                                <strong style="color:darkred">@TempData["err"]</strong>
+                            }
+                            <hr />
+                            @ViewBag.Title - <h4 style="color:darkred">Fields marked with * are required</h4>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                @Html.ValidationSummary()
+                                <form class="cmxform form-horizontal tasi-form" id="signupForm" method="post" action="">
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">E-Mail Address: *</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="EMail" type="email" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">Company Address: *</label>
+                                        <div class="col-lg-10">
+                                            <textarea class="form-control " id="ccomment" name="Address" required=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">Location Url:</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="Location" type="url" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">Phone No 1: *</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="PhoneNumber1" type="text" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">Phone No 2:</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="PhoneNumber2" type="text" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-success" type="submit">Add Company Contact Information</button>
+                                            <a href="~/AdminCreate/CompanyContactList" class="btn btn-warning">Cancel</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

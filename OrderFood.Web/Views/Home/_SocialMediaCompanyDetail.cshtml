@@ -1,0 +1,14 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.CompanySocialMedia>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <p>
+        <a href="@item.Url" target="_blank">
+            <img src="~/img/companysocial/@item.Logo" class="img-responsive" style="max-height:55px;max-width:70px;min-height:55px;min-width:70px;" title="@item.Name" />
+            @item.Name
+        </a>
+    </p>
+}

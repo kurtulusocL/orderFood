@@ -1,0 +1,14 @@
+﻿@model OrderFood.Entity.Models.Company
+@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: '/Company/_HitCount/',
+            data: { id=@Model.Id},
+            type: 'POST',
+        });
+    })
+</script>

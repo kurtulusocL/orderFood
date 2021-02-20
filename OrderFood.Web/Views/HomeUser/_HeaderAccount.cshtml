@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+
+<li class="nav-item dropdown nav-user">
+    <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        @{
+            Html.RenderAction("_ProfilePhotoHeader", "HomeUser");
+        }
+    </a>
+    <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+        <div class="nav-user-info">
+            <h5 class="mb-0 text-white nav-user-name">@Session["KullanıcıAdıSoyadı"] </h5>
+            <span class="status"></span><span class="ml-2">@DateTime.UtcNow.Day, @DateTime.UtcNow.Month, @DateTime.UtcNow.Year</span>
+        </div>
+        @{
+            Html.RenderAction("_GetUserId", "HomeUser");
+        }
+        <a class="dropdown-item" href="~/UserAccount/Logout"><i class="fas fa-power-off mr-2"></i>Desconectar</a>
+    </div>
+</li>

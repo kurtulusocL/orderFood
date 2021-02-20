@@ -1,0 +1,53 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Kind>
+@{
+    ViewBag.Title = "Company Categories With The Least Companies";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <section>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row invoice-list">
+                        <div class="text-center corporate-id">
+                            <strong>@ViewBag.Title</strong>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Category Name</th>
+                                <th>Company</th>
+                                <th>Register Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.Companies.Count()</td>
+                                    <td>@item.CreatedDate.ToLongDateString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="text-center invoice-btn">
+                        <a class="btn btn-success btn-xs" href="~/AdminIstatistic/OurIstatistic"> General Company Statistics </a>
+                        <a class="btn btn-primary btn-xs" href="~/AdminIstatistic/CompanyList"> Company Statistics </a>
+                    </div>
+                    <div class="text-center invoice-btn">
+                        <div class="pagination" align="center">
+                            <div class="pagination-large">
+                                @Html.PagedListPager(Model, Page => Url.Action("LessCategoryCompany", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

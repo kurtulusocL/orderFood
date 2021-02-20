@@ -1,0 +1,128 @@
+﻿@{
+    Layout = null;
+}
+
+<div id="sidebar" class="nav-collapse ">
+    <ul class="sidebar-menu" id="nav-accordion">
+        <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Contact Operations</span>
+            </a>
+            <ul class="sub">
+                <li><a href="~/Contact/kurtulusocL">Contact Info List</a></li>
+                <li><a href="~/SocialMedia/kurtulusocL">Social Media List</a></li>
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Ad Operations</span>
+            </a>
+            <ul class="sub">
+                <li><a href="~/Ad/kurtulusocL">Ad List</a></li>
+                <li><a href="~/VideoAd/kurtulusocL">Video Ad List</a></li>
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Content Operations</span>
+            </a>
+            <ul class="sub">
+                <li><a href="~/Country/kurtulusocL">Country List</a></li>
+                <li><a href="~/City/kurtulusocL">City List</a></li>
+                <li><a href="~/Kind/kurtulusocL">Company Kind List</a></li>
+                <li><a href="~/Category/kurtulusocL">Category List</a></li>
+                <li><a href="~/Subcategory/kurtulusocL">Subcategory List</a></li>
+                <li><a href="~/Slider/kurtulusocL">Slider List</a></li>
+                <li><a href="~/Payment/kurtulusocL">Payment List</a></li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li><a href="~/ToMake/kurtulusocL">ToDo List</a></li>
+                }
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">               
+                <span>Company-Product Operations</span>
+            </a>
+            <ul class="sub">
+                <li><a href="~/Company/kurtulusocL">Company List</a></li>
+                <li><a href="~/Product/kurtulusocL">Product List</a></li>
+                <li><a href="~/Picture/kurtulusocL">Photo List</a></li>
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">               
+                <span>Order Operations</span>
+            </a>
+            <ul class="sub">
+                <li><a href="~/Order/kurtulusocL">Order List</a></li>
+                <li><a href="~/Order/TotalOrderUser">Order Of Users</a></li>
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">                
+                <span>Incoming Message Operations</span>
+            </a>
+            <ul class="sub">
+                <li><a href="~/Complain/kurtulusocL">Complain List</a></li>
+                <li><a href="~/Comment/kurtulusocL">Comment List</a></li>
+                <li><a href="~/MessageFromCompany/kurtulusocL">Mail From Company</a></li>
+                <li><a href="~/CancelRequest/kurtulusocL">Membership Cancellation</a></li>
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Admin Content Operations</span>
+            </a>
+            <ul class="sub">
+                <li><a href="~/AdminCreate/CompanyList">Company List</a></li>
+                <li><a href="~/AdminCreate/ProductList">Product List</a></li>
+                <li><a href="~/AdminCreate/ProductDetailList">Product Detail List</a></li>
+                <li><a href="~/AdminCreate/CompanySocialMediaList">Company Social Media List</a></li>
+                <li><a href="~/AdminCreate/CompanyContactList">Company Contact List</a></li>
+                <li><a href="~/AdminCreate/PictureList">Photo List</a></li>
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Admin Statistics</span>
+            </a>
+            <ul class="sub">
+                <li><a href="~/AdminIstatistic/CompanyList">Company Statistics List</a></li>
+                <li><a href="~/AdminIstatistic/GeneralProductIstatistic">General Product Statistics</a></li>
+                <li><a href="~/AdminIstatistic/GeneralCompanyIstatistic">General Company Statistics</a></li>
+                <li><a href="~/AdminIstatistic/OurIstatistic">Our Statistics</a></li>
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Admin Content</span>
+            </a>
+            <ul class="sub">
+                <li><a href="~/Admin/AdminList">Admin List</a></li>              
+                <li><a href="~/Admin/SetCookie">Set Cookie</a></li>
+                <li><a href="~/MessageForUser/UserList">Send Message For User</a></li>
+                <li class="sub-menu">
+                    <a href="">Admin Save</a>
+                    <ul class="sub">
+                        <li><a href="~/Account/Register">New Admin Register</a></li>
+                        <li><a href="~/Account/RegisterAsistant">New Asistant Register</a></li>
+                        <li><a href="~/Account/RegisterHelper">New Helper Register</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Member Content</span>
+            </a>
+            <ul class="sub">
+                <li><a href="~/Log/kurtulusocL">Log List</a></li>    
+                <li><a href="~/ProfilePhoto/kurtulusocL">Profile Photos</a></li>
+                <li><a href="~/Admin/UserList">Active Member List</a></li>
+                <li><a href="~/Admin/CompanyList">Active Company List</a></li>
+                <li><a href="~/Admin/AllUser">User Statistics</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

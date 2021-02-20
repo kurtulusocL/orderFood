@@ -1,0 +1,39 @@
+﻿@model OrderFood.Entity.UserModels.Login
+@{
+    ViewBag.Title = "Por Favor Iniciar Sesión";
+    Layout = "";
+}
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>@ViewBag.Title</h4>
+                @Html.ValidationSummary()
+                @using (Html.BeginForm("Login", "UserAccount", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                {
+                    <form class="aa-login-form" action="" method="post">
+                        @Html.AntiForgeryToken()
+                        <label for="">Usario<span>*</span></label>
+                        <br />
+                        <input type="text" name="Username" placeholder="Usario">
+                        <p></p>
+                        <label for="">Contraseña<span>*</span></label>
+                        <br />
+                        <input type="password" name="Password" placeholder="Contraseña">
+                        <br /><br />
+                        <label for="rememberme" class="rememberme"><input type="checkbox" name="RememberMe" id="rememberme"> Recuérdame </label>
+                        <p></p>
+                        <button class="aa-browse-btn" type="submit">Iniciar Sesión</button>
+                        <p></p>
+                        <p class="aa-lost-password"><a href="~/UserAccount/ForgotPassword"> ¿Olvidaste Tu Contraseña?</a></p>
+                        <div class="aa-register-now">
+                            ¿No eres miembro todavía? <a href="~/UserAccount/Register">¡Regístrate Ahora!</a>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>

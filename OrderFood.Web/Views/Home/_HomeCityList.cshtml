@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.City>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-md-4 col-sm-4">
+        <div class="aa-latest-blog-single">
+            <figure class="aa-blog-img">
+                <a>
+                    <img alt="city" title="@item.Name" src="~/img/cityyy.jpg" style="max-height:220px;max-width:300px;min-height:220px;min-width:300px;">
+                </a>
+                <figcaption class="aa-blog-img-caption">
+                    <a href="~/Company/City/@item.Id"><i class="fa fa-user"></i>@item.Companies.Count() Empresas</a>
+                    <a href="~/Product/City/@item.Id"><i class="fa fa-spoon"></i>@item.Products.Count() Comidas</a>
+                    @if (item.CountryId != null)
+                    {
+                        <a href="~/City/Country/@item.CountryId"><i class="fa fa-map"></i>@item.Country.Name</a>
+                    }
+                </figcaption>
+            </figure>
+            <div class="aa-blog-info">
+                <h3 class="aa-blog-title"><a href="~/Product/City/@item.Id">@item.Name</a></h3>
+                @if (item.CountryId != null)
+                {
+                    <p><a href="~/City/Country/@item.CountryId">@item.Country.Name <span class="fa fa-long-arrow-right"></span></a></p>
+                }
+                <p><a href="~/Company/City/@item.Id">@item.Companies.Count() con Empresa <span class="fa fa-long-arrow-right"></span></a></p>
+                <p><a href="~/Product/City/@item.Id">@item.Products.Count() del Comida <span class="fa fa-long-arrow-right"></span></a></p>
+            </div>
+        </div>
+    </div>
+}

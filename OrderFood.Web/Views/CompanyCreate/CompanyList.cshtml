@@ -1,0 +1,120 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Company>
+@{
+    ViewBag.Title = "Lista De La Información De Su Compañía";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">@ViewBag.Title</h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/UserProfile" class="breadcrumb-link">Perfil de la Compañía</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">@ViewBag.Title - <a href="~/CompanyCreate/CompanyCreate" class="btn btn-primary btn-xs">Agregar Nueva Compañía</a> - <a href="~/CompanyCreate/CompanySocialMediaList" class="btn btn-dark btn-xs">Lista Cuentas Redes Sociales de la Compañía</a> - <a href="~/CompanyCreate/ProductList" class="btn btn-info btn-xs">Lista de Productos</a> - <a href="~/CompanyCreate/CompanyContactList" class="btn btn-success btn-xs">Lista de Contacto de la Compañía</a></h5>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered first">
+                            <thead>
+                                <tr>
+                                    <th width="80">Logo</th>
+                                    <th>Nombre</th>
+                                    <th>Producto</th>
+                                    <th>Interacción/Gusto</th>
+                                    <th>País/Ciudad</th>
+                                    <th>Tipo</th>
+                                    <th>Orden/Imagen</th>
+                                    <th>Comentario/Queja</th>
+                                    <th>Fecha de Registro</th>
+                                    <th>Fecha Actualizada</th>
+                                    <th>Actas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><img src="~/img/logo/@item.Logo" title="@item.Name" style="max-height:140px;max-width:90px;min-height:140px;min-width:90px;" class="img-responsive" alt="@item.Logo" /></td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Products.Count()</td>
+                                        <td>
+                                            <strong>Interacción: @item.Hit.Value.ToString()</strong><br />
+                                            <strong>Gusto: @item.Like.Value.ToString()</strong>
+                                        </td>
+                                        <td>
+                                            <strong>@item.Country.Name</strong><br />
+                                            <strong>@item.City.Name</strong>
+                                        </td>
+                                        <td><strong>@item.Kind.Name</strong></td>
+                                        <td>
+                                            <strong>Orden: @item.Orders.Count()</strong><br />
+                                            <strong>Imagen: @item.Pictures.Count()</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Comentario: @item.Comments.Count()</strong><br />
+                                            <strong>Queja: @item.Complains.Count()</strong>
+                                        </td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td>
+                                            @if (item.UpdatedDate != null)
+                                            {
+                                                @item.UpdatedDate.Value.ToShortDateString()
+                                            }
+                                            else
+                                            {
+                                                <span>-</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="~/CompanyCreate/CompanyPhotoCreate/@item.Id" class="btn btn-primary btn-xs">Añadir Imagen</a>
+                                            <a href="~/CompanyCreate/CompanyDetail/@item.Id" class="btn btn-info btn-xs">Detalle</a>
+                                            <a href="~/CompanyCreate/ProductCreate/@item.Id" class="btn btn-warning btn-xs">Añadir Producto</a>
+                                            <a href="~/CompanyCreate/CompanyEdit/@item.Id" class="btn btn-success btn-xs">Actualizar</a>
+                                            <a href="~/CompanyCreate/SocialMediaCreate/@item.Id" class="btn btn-dark btn-xs">Redes sociales</a>
+                                            <a href="~/CompanyCreate/ContactCreate/@item.Id" class="btn btn-warning btn-xs"><i class="glyphicon-plus">Contacto</i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th width="80">Logo</th>
+                                    <th>Nombre de Compañía</th>
+                                    <th>Producto</th>
+                                    <th>Interacción/Gusto</th>
+                                    <th>País/Ciudad</th>
+                                    <th>Tipo</th>
+                                    <th>Orden/Imagen</th>
+                                    <th>Comentario/Queja</th>
+                                    <th>Fecha de Registro</th>
+                                    <th>Fecha Actualizada</th>
+                                    <th>Actas</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("CompanyList", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "General Company Statistics";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel tasks-widget">
+                    <header class="panel-heading">
+                        <div class=" add-task-row">
+                            @ViewBag.Title <a class="btn btn-primary btn-sm pull-right" href="~/AdminIstatistic/CompanyList">Homepage</a>
+                        </div>
+                    </header>
+                    <div class="panel-body">
+                        <div class="task-content">
+                            <ul class="task-list">
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Most Popular Companies</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralMostPopularCompany" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Least Popular Companies</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralLessPopularCompany" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Top Selling Companies</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralMostSellingCompany" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Those with the Most Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralMostCompanyProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Most Interactions</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralMostInteractionCompany" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">The Situations of the Companies Receiving the Most Complaints</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralMostCompanyStatus" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">The Situations of the Companies Receiving the Least Complaints</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralLessCompanyStatus" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>

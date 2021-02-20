@@ -1,0 +1,103 @@
+﻿@model OrderFood.Entity.UserModels.Register
+@{
+    ViewBag.Title = "Complete el formulario para convertirse en miembro.";
+    TempData["title"] = "Campos marcados con * son obligatorios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                @if (TempData["err"] != null)
+                {
+                    <h2>@TempData["err"]</h2>
+                }
+                @if (TempData["msg"] != null)
+                {
+                    <h2>@TempData["msg"]</h2>
+                }
+                @if (TempData["err"] == null && TempData["msg"] == null)
+                {
+                    <h2>@ViewBag.Title</h2>
+                }
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    @if (TempData["err"] != null)
+                    {
+                        <li class="active">@TempData["err"]</li>
+                    }
+                    @if (TempData["msg"] != null)
+                    {
+                        <li class="active">@TempData["msg"]</li>
+                    }
+                    @if (TempData["err"] == null && TempData["msg"] == null)
+                    {
+                        <li class="active">@ViewBag.Title</li>
+                    }
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-myaccount">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-myaccount-area">
+                    <div class="row">
+                        <a href="~/UserAccount/Login" class="btn btn-primary">¿Ya Eres Usuario? Inicia Sesión Ahora</a>
+                        <div class="col-md-10">
+                            <div class="aa-myaccount-register">
+                                <h4>@ViewBag.Title</h4>
+                                <h5 style="color:darkred">@TempData["title"]</h5>
+                                <form action="" class="aa-login-form" method="post">
+                                    @using (Html.BeginForm("Register", "UserAccount", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <label for="">Usario<span>*</span></label>
+                                        <input type="text" name="Username" placeholder="Usario">
+                                        <label for="">Nombre-Apellido<span>*</span></label>
+                                        <input type="text" name="NameSurname" placeholder="Nombre-Apellido">
+                                        <label for="">Género<span>*</span></label>
+                                        <input type="text" name="Gender" placeholder="Género">
+                                        <label for="">Fecha De Nacimiento<span>*</span></label><br />
+                                        <input type="date" name="Birthdate"><br />
+                                        <label for="">Estado/Territorio Donde Vive<span>*</span></label>
+                                        <input type="text" name="Province" placeholder="Estado/Territorio Donde Vive">
+                                        <label for="">Ciudad En La Que Vives<span>*</span></label>
+                                        <input type="text" name="City" placeholder="País de Ciudad">
+                                        <label for="">País de Residencia<span>*</span></label>
+                                        <input type="text" name="Country" placeholder="País de Residencia">
+                                        <label for="">Número de Teléfono<span>*</span></label>
+                                        <input type="text" name="PhoneNumber" placeholder="Número de Teléfono">
+                                        <label for="">Dirección Correo electrónico<span>*</span></label><br />
+                                        <input type="email" name="Email" placeholder="Dirección Correo electrónico"><br />
+                                        <label for="">Contraseña<span>*</span></label>
+                                        <input type="password" name="Password" placeholder="Contraseña">
+                                        <label for="">Confirmar la Contraseña<span>*</span></label>
+                                        <input type="password" name="ConfirmPassword" placeholder="Confirmar la Contraseña">
+
+                                        <button type="submit" class="aa-browse-btn">Regístrate</button>
+                                    }
+                                </form>
+                            </div>
+                            <div class="row">
+                                <span>
+                                    <a href="~/Home/UserArgeement" class="btn btn-link" target="_blank">Acuerdo del Usuario</a>
+                                </span>
+                                <span>
+                                    <a href="~/Home/SecurityAndCookie" class="btn btn-link" target="_blank">Política de Privacidad y Cookies</a>
+                                </span>
+                                <span>
+                                    <a href="~/Home/KVKH" class="btn btn-link" target="_blank">Sus Datos Personales y Su Procesamiento</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

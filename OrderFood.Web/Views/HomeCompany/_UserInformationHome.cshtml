@@ -1,0 +1,21 @@
+﻿@model OrderFood.Data.Identity.ApplicationUser
+@{
+    Layout = null;
+}
+
+<div class="card-body border-top">
+    <h3 class="font-16">Contacto</h3>
+    <div class="">
+        <ul class="list-unstyled mb-0">
+            @{
+                Html.RenderAction("_ContactHome", "HomeCompany", new { id = Model.Id });
+            }
+        </ul>
+    </div>
+</div>
+<div class="card-body border-top">
+    <h3 class="font-16">Ubicación</h3>
+    @{
+        Html.RenderAction("_LocationHome", "HomeCompany", new { id = Model.Id });
+    }
+</div>

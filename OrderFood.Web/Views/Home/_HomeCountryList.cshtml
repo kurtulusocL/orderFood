@@ -1,0 +1,29 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Country>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-md-4 col-sm-4">
+        <div class="aa-latest-blog-single">
+            <figure class="aa-blog-img">
+                <a>
+                    <img alt="@item.Photo" title="@item.Name" src="~/img/country/@item.Photo" style="max-height:220px;max-width:300px;min-height:220px;min-width:300px;">
+                </a>
+                <figcaption class="aa-blog-img-caption">
+                    <span href="#"><i class="fa fa-user"></i>@item.Companies.Count() Empresas</span>
+                    <a href="#"><i class="fa fa-spoon"></i>@item.Products.Count() Comidas</a>
+                    <span href="#"><i class="fa fa-map"></i>@item.Cities.Count() Ciudades</span>
+                </figcaption>
+            </figure>
+            <div class="aa-blog-info">
+                <h3 class="aa-blog-title"><a href="~/Country/Detail/@item.Id">@item.Name</a></h3>
+                <p>@item.Cities.Count() en una ciudad diferentes</p>
+                <p>@item.Companies.Count() con la compañías</p>
+                <p>@item.Products.Count() puedes elegir comers</p>
+                <a href="~/Country/Detail/@item.Id" class="aa-read-mor-btn">Detalle <span class="fa fa-long-arrow-right"></span></a>
+            </div>
+        </div>
+    </div>
+}

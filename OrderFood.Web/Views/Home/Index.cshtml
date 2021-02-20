@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<section id="aa-slider">
+    <div class="aa-slider-area">
+        <div id="sequence" class="seq">
+            <div class="seq-screen">
+                <ul class="seq-canvas">
+                    @{
+                        Html.RenderAction("_Slider", "Home");
+                    }
+                </ul>
+            </div>
+            <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
+                <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
+                <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
+            </fieldset>
+        </div>
+    </div>
+</section>
+<section id="aa-latest-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-latest-blog-area">
+                    <h2>Elige Tu País - <a href="~/City/Index" class="btn btn-info">Todos los Países</a></h2>
+                    <div class="row">
+                        @{
+                            Html.RenderAction("_HomeCountryList", "Home");
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-latest-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-latest-blog-area">
+                    <h2>Elige Tu Ciudad - <a href="~/City/Index" class="btn btn-info">Todas las Ciudades</a></h2>
+                    <div class="row">
+                        @{
+                            Html.RenderAction("_HomeCityList", "Home");
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-subscribe-area">
+                    @{
+                        Html.RenderAction("_CompanyVideoAd", "Home");
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-testimonial">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-testimonial-area">
+                    <ul class="aa-testimonial-slider">
+                        @{
+                            Html.RenderAction("_HomeCommentList", "Home");
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-client-brand">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-client-brand-area">
+                    <ul class="aa-client-brand-slider">
+                        @{
+                            Html.RenderAction("_HomeCompanySlider", "Home");
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-subscribe-area">
+                    @{
+                        Html.RenderAction("_CompanyVideoAd", "Home");
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,56 @@
+﻿@model OrderFood.Data.Identity.ApplicationUser
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="bio-row">
+        <p><span>Country </span>: @Model.Country</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Province </span>: @Model.Province</p>
+    </div>
+    <div class="bio-row">
+        <p><span>City </span>: @Model.City</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Birthdate </span>: @Model.Birthdate.Value.ToShortDateString()</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Phone Number </span>: @Model.PhoneNumber</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Gender </span> @Model.Gender</p>
+    </div>
+    <div class="bio-row">
+        <p>
+            <span>Confirm Status </span>
+            @if (Model.IsConfirmed == true)
+            {
+                <span>Approved</span>
+            }
+            else
+            {
+                <span>Waiting for approval</span>
+            }
+        </p>
+    </div>
+    <div class="bio-row">
+        <p><span>Register Date: </span> @Model.CreatedDate.ToShortDateString()</p>
+    </div>
+    @if (Model.UpdatedDate != null)
+    {
+        <div class="bio-row">
+            <p><span>Update Date: </span> @Model.UpdatedDate.Value.ToShortDateString()</p>
+        </div>
+    }
+    else
+    {
+        <div class="bio-row">
+            <p><span>Update Date: </span> The profile has not been updated yet.</p>
+        </div>
+    }
+    <div class="bio-row">
+        <p><span>Respond Title </span> @Model.RespondTitle</p>
+    </div>
+</div>

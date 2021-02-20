@@ -1,0 +1,11 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Company>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    {
+        Html.RenderAction("_ProductHome", "HomeCompany", new { id = item.Id });
+    }
+}

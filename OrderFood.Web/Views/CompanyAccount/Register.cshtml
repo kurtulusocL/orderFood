@@ -1,0 +1,100 @@
+﻿@model OrderFood.Entity.CompanyModels.Register
+@{
+    Layout = null;
+    ViewBag.Title = "Complete el Formulario Para Convertirse en Miembro.";
+}
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="~/img/Logo 3.png" />
+    <title>@ViewBag.Title - provechoo.com</title>
+    <link rel="stylesheet" href="~/Content/temp/userpage/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="~/Content/temp/userpage/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/temp/userpage/assets/libs/css/style.css">
+    <link rel="stylesheet" href="~/Content/temp/userpage/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <div class="card ">
+            <div class="card-header text-center">
+                <a href="~/Home/Index"><img class="logo-img" src="~/img/Logo 3.png" alt="logo"></a>
+                @if (TempData["msg"] != null)
+                {
+                    <span class="splash-description"> @TempData["msg"]</span>
+                }
+                else
+                {
+                    <span class="splash-description">@ViewBag.Title</span>
+                }
+            </div>
+            <div class="card-body">
+                <form method="post" name="" action="">
+                    @using (Html.BeginForm("Register", "CompanyAccount", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" id="username" name="NameSurname" type="text" placeholder="Nombre-Apellido" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" id="username" name="Province" type="text" placeholder="Estado / Territorio" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" id="username" name="City" type="text" placeholder="Ciudad" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" id="username" name="Country" type="text" placeholder="País" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" id="username" name="RespondTitle" type="text" placeholder="Su Puesto en la Empresa" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" id="username" name="Username" type="text" placeholder="Usuario" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" id="username" name="PhoneNumber" type="text" placeholder="Número de Teléfono de  Empresa" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" id="username" name="Email" type="text" placeholder="Correo Electrónico" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" id="password" name="Password" type="password" placeholder="Contraseña" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" id="password" name="ConfirmPassword" type="password" placeholder="Confirma Contraseña" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Registrarse</button>
+                    }
+                </form>
+            </div>
+            <div class="card-footer bg-white p-0  ">
+                <div class="card-footer-item card-footer-item-bordered">
+                    <a href="~/UserAccount/Login" class="footer-link">Ya tienes una cuenta? Iniciar Sesión Ahora Mismo ...</a>
+                </div>
+            </div>
+            <div class="card-footer bg-white p-0  ">
+                <div class="card-footer-item card-footer-item-bordered">
+                    <a href="~/Home/CompanyDeal" class="footer-link">Texto de Aclaración Empresa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

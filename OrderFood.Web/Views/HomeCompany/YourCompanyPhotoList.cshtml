@@ -1,0 +1,64 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Picture>
+@{
+    ViewBag.Title = "Lista De Imágenes De La Compañía";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<div class="container-fluid dashboard-content">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header" id="top">
+                        <h2 class="pageheader-title">@ViewBag.Title </h2>
+                        <div class="page-breadcrumb">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="~/HomeCompany/YourProductList" class="breadcrumb-link">Su Lista De Productos</a></li>
+                                    <li class="breadcrumb-item"><a href="~/HomeCompany/YourCompanyList" class="breadcrumb-link">Lista De Su Empresa</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">@ViewBag.Tİtle</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="section-block" id="card-variance">
+                        <h3 class="section-title">@ViewBag.Title </h3>
+                    </div>
+                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card card-figure">
+                            @if (item.CompanyId != null)
+                            {
+                                <figure class="figure">
+                                    <div class="figure-img">
+                                        <img class="img-fluid" src="~/img/foto/@item.ImageUrl" style="max-height:180px;max-width:240px;min-height:180px;min-width:240px" title="@item.Company.Name" alt="@item.ImageUrl">
+                                        <div class="figure-tools">                                           
+                                            <span class="badge badge-info">@item.Company.Name</span>
+                                        </div>
+                                    </div>
+                                    <figcaption class="figure-caption">                                      
+                                        <p class="text-muted mb-0"> @item.Company.Name </p>
+                                    </figcaption>
+                                </figure>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("YourCompanyPhotoList", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

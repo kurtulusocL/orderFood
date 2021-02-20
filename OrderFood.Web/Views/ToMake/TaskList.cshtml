@@ -1,0 +1,76 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.ToMake>
+@{
+    ViewBag.Title = "All Task List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel tasks-widget">
+                        <header class="panel-heading">
+                            <a class="btn btn-info btn-sm pull-right" href="~/ToMake/kurtulusocL">Active Task List</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @ViewBag.Title <a class="btn btn-primary btn-sm pull-left" href="~/ToMake/Index">Task Homepage</a>
+                        </header>
+                        <div class="panel-body">
+                            <div class="task-content">
+                                <ul class="task-list">
+                                    @foreach (var item in Model)
+                                    {
+                                        <li>
+                                            <div class="task-checkbox">
+                                                @if (item.IsFinished == true)
+                                                {
+                                                    <input type="checkbox" class="list-child" value="true" checked />
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" class="list-child" value="false" />
+                                                }
+                                            </div>
+                                            <div class="task-title">
+                                                <span class="task-title-sp">@item.Title - OwnerId: @item.UserId</span>
+                                                <span class="badge badge-sm label-success">Last Date: @item.TillWhen.ToLongDateString()</span>
+                                                <span class="badge badge-sm label-primary">Task => @item.NameSurname</span>
+                                                <div class="pull-right">
+                                                    @if (User.IsInRole("Admin"))
+                                                    {
+                                                        <a class="btn btn-info btn-xs" href="~/ToMake/Detail/@item.Id"><i class="icon-info"></i></a>
+                                                        <a class="btn btn-success btn-xs" href="~/ToMake/Edit/@item.Id"><i class="icon-pencil"></i></a>
+                                                        if (item.IsConfirmed == true)
+                                                        {
+                                                            <a class="btn btn-warning btn-xs" href="~/ToMake/DeActive/@item.Id"><i class="icon-archive"></i></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a class="btn btn-success btn-xs" href="~/ToMake/Active/@item.Id"><i class="icon-pushpin"></i></a>
+                                                        }
+                                                        <a class="btn btn-danger btn-xs" href="~/ToMake/Delete/@item.Id" onclick="return confirm('Are you sure ?')"><i class="icon-trash "></i></a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="btn btn-info btn-xs" href="~/ToMake/Detail/@item.Id"><i class="icon-info"></i></a>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class=" add-task-row">
+                                <div class="pagination" align="center">
+                                    <div class="pagination-large">
+                                        @Html.PagedListPager(Model, Page => Url.Action("TaskList", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

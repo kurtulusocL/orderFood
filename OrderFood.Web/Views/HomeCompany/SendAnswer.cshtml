@@ -1,0 +1,83 @@
+﻿@model OrderFood.Entity.Models.MessageFromCompany
+@{
+    ViewBag.Title = "Escribe Un Correo Electrónico A provechoo.com";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">
+                    @if (TempData["message"] != null)
+                    {
+                        <strong style="color:darkblue">@TempData["message"]</strong>
+                    }
+                    @if (TempData["err"] != null)
+                    {
+                        <strong style="color:darkred">@TempData["err"]</strong>
+                    }
+                    @if (TempData["message"] == null && TempData["err"] == null)
+                    {
+                        @ViewBag.Title
+                    }
+                </h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/UserProfile" class="breadcrumb-link">Perfil de la Compañía</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header" style="color:darkred">
+                    <a href="~/HomeCompany/YourMessageBox" class="btn btn-primary btn-xs">Tu Cuadro de Mensaje</a> - Campos marcados con * son obligatorios
+                </h5>
+                <div class="card-body">
+                    @Html.ValidationSummary()
+                    <form id="validationform" method="post" data-parsley-validate="" novalidate="">
+                        @Html.AntiForgeryToken()                       
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Correo Electrónico del Remitente: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="Reciever" placeholder="Correo electrónico del remitente" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Asunto del E-Mail: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="Subject" placeholder="Asunto del e-mail" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">E-Mail: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <textarea required="" name="Text" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Nombre-Apellido: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="NameSurname" placeholder="Nombre-Apellido" class="form-control">
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group row text-right">
+                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                <button type="submit" class="btn btn-space btn-primary">Enviar Correo Electrónico</button>
+                                <a href="~/HomeCompany/YourMessageBox" class="btn btn-space btn-secondary">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

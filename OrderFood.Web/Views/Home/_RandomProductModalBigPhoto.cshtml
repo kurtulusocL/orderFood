@@ -1,0 +1,11 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Picture>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <a class="simpleLens-lens-image" data-lens-image="/img/foto/@item.ImageUrl">
+        <img src="~/img/foto/@item.ImageUrl" style="max-height:300px;max-width:230px;min-height:300px;min-width:230px;" class="simpleLens-big-image">
+    </a>
+}

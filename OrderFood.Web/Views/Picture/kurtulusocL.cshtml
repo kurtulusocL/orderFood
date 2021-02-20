@@ -1,0 +1,87 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Picture>
+@{
+    ViewBag.Title = "Active Photo List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            @ViewBag.Title - <a href="~/Picture/PictureList" class="btn btn-info btn-xs">Photo List</a>
+                        </header>
+                        <table class="table table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="80"> Photo</th>
+                                    <th>Photo Title</th>
+                                    <th>Photo Place</th>
+                                    <th>Add Date</th>
+                                    <th>Update Date</th>
+                                    <th>Operations</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="80"><img src="~/img/foto/@item.ImageUrl" class="img-responsive" /></td>
+                                        <td>@item.Title</td>
+                                        <td>
+                                            @if (item.CompanyId != null)
+                                            {
+                                                <a href="~/Picture/Company/@item.CompanyId" class="btn btn-link">
+                                                    Company Photo: <strong style="color:darkblue">@item.Company.Name</strong>
+                                                </a>
+                                            }
+                                            @if (item.ProductId != null)
+                                            {
+                                                <a href="~/Picture/Product/@item.ProductId" class="btn btn-link">
+                                                    Product No: <strong style="color:darkgreen">@item.Product.ProductNo</strong><br />
+                                                    Product Name: <strong style="color:darkgreen">@item.Product.Name</strong>
+                                                </a>
+                                            }
+                                        </td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td>
+                                            @if (item.UpdatedDate != null)
+                                            {
+                                                @item.UpdatedDate.Value.ToShortDateString()
+                                            }
+                                            else
+                                            {
+                                                <span>-</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("Asistant"))
+                                            {
+                                                <a href="~/Picture/DeActive/@item.Id" class="btn btn-warning btn-xs">Suspend</a>
+                                                <a href="~/Picture/Delete/@item.Id" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure ?')">Delete</a>
+                                            }
+                                            else
+                                            {
+                                                <span>you have no authority.</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("kurtulusocL", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

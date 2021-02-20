@@ -1,0 +1,51 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Company>
+@{
+    ViewBag.Title = "Company Statistics";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <section>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row invoice-list">
+                        <div class="text-center corporate-id">
+                            <strong>@ViewBag.Title</strong>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Complaint</th>
+                                <th>Comment</th>
+                                <th>Social Media </th>
+                                <th>Contact Address</th>
+                                <th>Photo</th>
+                                <th>Cancel Request</th>
+                                <th>Register Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Complains.Count()</td>
+                                    <td>@item.Comments.Count()</td>
+                                    <td>@item.CompanySocialMedias.Count()</td>
+                                    <td>@item.CompanyContacts.Count()</td>
+                                    <td>@item.Pictures.Count()</td>
+                                    <td>@item.CancelRequests.Count()</td>
+                                    <td>@item.CreatedDate.ToLongDateString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="text-center invoice-btn">
+                        <a class="btn btn-success btn-xs" href="~/AdminIstatistic/CompanyList"> Back </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

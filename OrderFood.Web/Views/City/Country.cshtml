@@ -1,0 +1,105 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.City>
+@{
+    ViewBag.Title = "Comidas en Su País";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>@ViewBag.Title</h2>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-blog-archive">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-blog-archive-area aa-blog-archive-2">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="aa-blog-content">
+                                <div class="row">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.CountryId != null)
+                                        {
+                                            <div class="col-md-4 col-sm-4">
+                                                <article class="aa-latest-blog-single">
+                                                    <figure class="aa-blog-img">
+                                                        <a><img alt="city" title="@item.Country.Name" src="~/img/country/@item.Country.Photo" style="max-height:220px;max-width:300px;min-height:220px;min-width:300px;"></a>
+                                                        <figcaption class="aa-blog-img-caption">
+                                                            <span>@item.Country.Companies.Count() empresa</span>
+                                                            <a>@item.Country.Products.Count() comida</a>
+                                                        </figcaption>
+                                                    </figure>
+                                                    <div class="aa-blog-info">
+                                                        <h3 class="aa-blog-title"><a>@item.Name</a></h3>
+                                                        <p>
+                                                            <a class="aa-read-mor-btn" href="~/Company/Country/@item.Id">Empresas de Comidas(@item.Companies.Count()) <span class="fa fa-long-arrow-right"></span></a>
+                                                        </p>
+                                                        <p>
+                                                            <a class="aa-read-mor-btn" href="~/Product/Country/@item.Id">Comidas (@item.Products.Count()) <span class="fa fa-long-arrow-right"></span></a>
+                                                        </p>
+                                                        <p>
+                                                            <a class="aa-read-mor-btn" href="~/City/Index/@item.Id">Lista de Ciudades(@item.Country.Cities.Count()) <span class="fa fa-long-arrow-right"></span></a>
+                                                        </p>
+                                                    </div>
+                                                </article>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="pagination" align="center">
+                                <div class="pagination-large">
+                                    @Html.PagedListPager(Model, Page => Url.Action("Country", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <aside class="aa-blog-sidebar">
+                                <div class="aa-sidebar-widget">
+                                    <h3>Países</h3>
+                                    <div class="tag-cloud">
+                                        @{
+                                            Html.RenderAction("_CategoryCountry", "Home");
+                                        }
+                                    </div>
+                                </div>
+                                <div class="aa-sidebar-widget">
+                                    <h3>Ciudades</h3>
+                                    <div class="tag-cloud">
+                                        @{
+                                            Html.RenderAction("_CategoryCity", "Home");
+                                        }
+                                    </div>
+                                </div>
+                                <div class="aa-sidebar-widget">
+                                    <h3>Anuncio</h3>
+                                    <div class="aa-recently-views">
+                                        <ul>
+                                            @{
+                                                Html.RenderAction("_CategoryAd", "Home");
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

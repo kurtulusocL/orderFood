@@ -1,0 +1,74 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Company>
+@{
+    ViewBag.Title = "Company List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4">
+                    <aside class="profile-nav alt green-border">
+                        <section class="panel">
+                            <div class="user-heading alt blue-bg">
+                                <a href="">
+                                    <img alt="@item.Logo" src="~/img/logo/@item.Logo" style="max-height:100px;min-height:100px;max-width:100px;min-width:100px" title="@item.Name">
+                                </a>
+                                <h1>@item.Name</h1>
+                                <p>@item.City.Name, @item.Country.Name</p>
+                            </div>
+                            <ul class="nav nav-pills nav-stacked">
+                                @if (item.Products.Count() > 0)
+                                {
+                                    <li>
+                                        <a href="~/AdminIstatistic/ProductIstatistic/@item.Id">Product Statistics</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/AdminIstatistic/CompanyIstatistic/@item.Id">Company Statistics</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a> <strong style="color:darkred">No product</strong></a>
+                                    </li>
+                                    <li>
+                                        <a> <strong style="color:darkred">No company</strong></a>
+                                    </li>
+                                }
+                            </ul>
+                        </section>
+                    </aside>
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="bio-chart">
+                                <input class="knob" data-width="101" data-height="101" data-displayPrevious=true data-thickness=".2" value="%@item.Products.Count()" data-fgColor="#4CC5CD" data-bgColor="#e8e8e8">
+                            </div>
+                            <div class="bio-desk">
+                                <h4 class="terques"> <= Product</h4>
+                                <p>Register Date :@item.CreatedDate.ToShortDateString()</p>
+                                @if (item.IsConfirmed == true)
+                                {
+                                    <p style="color:darkblue">Active Member</p>
+                                }
+                                else
+                                {
+                                    <p style="color:darkred">Account Suspended</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="pagination" align="center">
+            <div class="pagination-large">
+                @Html.PagedListPager(Model, Page => Url.Action("CompanyList", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </div>
+        </div>
+    </section>
+</section>

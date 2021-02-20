@@ -1,0 +1,44 @@
+﻿@model IEnumerable<OrderFood.Web.Models.SepetItem>
+@{
+    Layout = null;
+}
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Su Pedido</th>
+            <th>Nombre de Empresa</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Urun.Name <strong> x  @item.Adet</strong></td>
+                <th>
+                    @if (item.Urun.CompanyId != null)
+                    {
+                        @item.Urun.Company.Name
+                    }
+                </th>
+                <td>
+                    @if (item.Urun.DicsountPrice != null && item.Urun.DicsountPrice != Convert.ToDecimal(0.00))
+                    {
+                        @item.Urun.DicsountPrice.Value.ToString()
+                    }
+                    else
+                    {
+                        @item.Urun.SellingPrice.ToString()
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Precio Total:</th>
+            <td>@ViewBag.Sepets</td>
+        </tr>
+    </tfoot>
+</table>

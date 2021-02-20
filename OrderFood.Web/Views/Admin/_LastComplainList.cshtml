@@ -1,0 +1,29 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Complain>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="panel-body">
+        @item.Text => @item.Text
+        <span>
+            @if (item.ProductId != null)
+            {
+                <span>
+                   Product Complain:
+                </span>
+                <strong>@item.Product.Name</strong><br />
+                <strong>@item.Product.City.Name / @item.Product.Country.Name</strong>
+            }
+            @if (item.CompanyId != null)
+            {
+                <span>
+                   Company Complain:
+                </span>
+                <strong>@item.Company.Name</strong><br />
+                <strong>@item.Company.City.Name / @item.Company.Country.Name</strong>
+            }
+        </span>
+    </div>
+}

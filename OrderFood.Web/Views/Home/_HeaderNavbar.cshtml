@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="aa-header-top-area">
+            <div class="aa-header-top-left">
+                <div class="cellphone hidden-xs">
+                    @{
+                        Html.RenderAction("_HeaderNavbarContact", "Home");
+                    }
+                </div>
+                <div class="aa-language">
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <img src="~/img/countrylist.jpg" style="max-height:20px;max-width:23px;min-width:23px;min-height:20px" alt="img" title="country list">Países
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            @{
+                                Html.RenderAction("_HeaderNavbarCountryList", "Home");
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="aa-language">
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <img src="~/img/cityyy.jpg" style="max-height:20px;max-width:23px;min-width:23px;min-height:20px" alt="flag">Ciudades
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            @{
+                                Html.RenderAction("_HeaderNavbarCityList", "Home");
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="aa-header-top-right">
+                <ul class="aa-head-top-nav-right">
+                    @if (User.IsInRole("Tienda") && User.Identity.IsAuthenticated == true)
+                    {
+                        <li><a href="~/HomeCompany/Index">Hola @Session["KullanıcıAdıSoyadı"]</a></li>
+                        <li><a href="~/CompanyAccount/Logout">Desconectar</a></li>
+                    }
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <li><a href="~/CompanyAccount/Login">Inicio Sesión Empresa</a></li>
+                    }
+                    @if (User.IsInRole("Users") && User.Identity.IsAuthenticated == true)
+                    {
+                        <li><a href="~/HomeUser/Index">Hola @Session["KullanıcıAdıSoyadı"]</a></li>
+                        <li><a href="~/UserAccount/Logout">Desconectar</a></li>
+                        <li class="hidden-xs"><a href="~/Order/Pay">Mi Carrito</a></li>
+                    }
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <li><a href="" data-toggle="modal" data-target="#login-modal">Inicio Sesión Usuario</a></li>                        
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

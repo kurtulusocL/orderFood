@@ -1,0 +1,83 @@
+﻿@model OrderFood.Entity.Models.CancelRequest 
+@{
+    ViewBag.Title = "Enviar Solicitud De Liquidación De Cuenta";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">
+                    @if (TempData["message"] != null)
+                    {
+                        <strong style="color:darkblue">@TempData["message"]</strong>
+                    }
+                    @if (TempData["err"] != null)
+                    {
+                        <strong style="color:darkred">@TempData["err"]</strong>
+                    }
+                    @if (TempData["message"] == null && TempData["err"] == null)
+                    {
+                        @ViewBag.Title
+                    }
+                </h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/UserProfile" class="breadcrumb-link">Perfil de la Compañía</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header" style="color:darkred">
+                    <a href="~/HomeCompany/Index" class="btn btn-primary btn-xs">Inicio</a> - Campos marcados con * son obligatorios
+                </h5>
+                <div class="card-body">
+                    @Html.ValidationSummary()
+                    <form id="validationform" method="post" data-parsley-validate="" novalidate="">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Nombre-Apelldio *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="NameSurname" placeholder="Nombre Apelldio" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">¿Qué Es Lo Que No Te Gusta?: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="Subject" placeholder="Estado sujeto a cancelación" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">¿Me Das Algunos Detalles?: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <textarea required="" name="Detail" placeholder="¿puede decirnos por qué?" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Especificar Un Tiempo: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="date" required="" name="When" class="form-control">
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group row text-right">
+                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                <button type="submit" class="btn btn-space btn-warning" onclick="return confirm('¿Estás seguro ?')">Enviar Solicitud</button>
+                                <a href="~/HomeCompany/Index" class="btn btn-success btn-secondary">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

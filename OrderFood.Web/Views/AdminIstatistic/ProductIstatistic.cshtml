@@ -1,0 +1,76 @@
+﻿@model OrderFood.Entity.Models.Product
+@{
+    ViewBag.Title = "Company Product Statistics";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel tasks-widget">
+                    <header class="panel-heading">
+                        @ViewBag.Title <a class="btn btn-primary btn-sm pull-right" href="~/AdminIstatistic/CompanyList">Homepage</a>
+                    </header>
+                    <div class="panel-body">
+                        <div class="task-content">
+                            @if (Model.CompanyId != null)
+                            {
+                                <ul class="task-list">
+                                    <li>
+                                        <div class="task-title">
+                                            <span class="task-title-sp">Top Selling Products</span>
+                                            <div class="pull-right">
+                                                <a href="~/AdminIstatistic/MostSellProduct/@Model.CompanyId" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-title">
+                                            <span class="task-title-sp">Least Sold Products</span>
+                                            <div class="pull-right">
+                                                <a href="~/AdminIstatistic/LessSellProduct/@Model.CompanyId" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-title">
+                                            <span class="task-title-sp">Top Selling Products by City</span>
+                                            <div class="pull-right">
+                                                <a href="~/AdminIstatistic/MostSellCity/@Model.CompanyId" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-title">
+                                            <span class="task-title-sp">Least Selling Products by City</span>
+                                            <div class="pull-right">
+                                                <a href="~/AdminIstatistic/LessSellCity/@Model.CompanyId" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-title">
+                                            <span class="task-title-sp">Top Selling Products by Country</span>
+                                            <div class="pull-right">
+                                                <a href="~/AdminIstatistic/MostSellCountry/@Model.CompanyId" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-title">
+                                            <span class="task-title-sp">Least Selling Products by Country</span>
+                                            <div class="pull-right">
+                                                <a href="~/AdminIstatistic/LessSellCountry/@Model.CompanyId" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>

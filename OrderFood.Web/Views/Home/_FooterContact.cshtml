@@ -1,0 +1,13 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Contact>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <address>
+        <p> @item.Address</p>
+        <p><span class="fa fa-phone"></span>@item.FaxNumber</p>
+        <p><span class="fa fa-envelope"></span>@item.EMail</p>
+    </address>
+}

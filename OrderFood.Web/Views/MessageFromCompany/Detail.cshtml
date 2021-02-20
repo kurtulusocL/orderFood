@@ -1,0 +1,44 @@
+﻿@model OrderFood.Entity.Models.MessageFromCompany
+@{
+    ViewBag.Title = "Mails From Companies Detail Informaiton";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            @ViewBag.Title - <a href="~/MessageFromCompany/kurtulusocL" class="btn btn-primary btn-xs">Incoming E-Mail List</a> - @if (User.IsInRole("Admin") || User.IsInRole("Asistant"))
+                            {
+                                <a href="~/MessageFromCompany/Delete/@Model.Id" onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-xs">Delete E-Mail</a>
+                            }
+                            else
+                            {
+                                <span>you have no authority.</span>
+                            }
+                        </header>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name Surname</th>
+                                    <th>Mail Text</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>@Model.NameSurname</td>
+                                    <td>@Model.Text</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

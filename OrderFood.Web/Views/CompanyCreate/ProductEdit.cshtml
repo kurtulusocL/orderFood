@@ -1,0 +1,175 @@
+﻿@model OrderFood.Entity.Models.Product
+@{
+    ViewBag.Title = "Actualizar La Información Del Producto";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+<script src="~/Content/temp/userpage/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/web/product.js"></script>
+
+<div class="container-fluid dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">
+                    @if (TempData["message"] != null)
+                    {
+                        <strong style="color:darkblue">@TempData["message"]</strong>
+                    }
+                    @if (TempData["err"] != null)
+                    {
+                        <strong style="color:darkred">@TempData["err"]</strong>
+                    }
+                    @if (TempData["message"] == null && TempData["err"] == null)
+                    {
+                        @ViewBag.Title
+                    }
+                </h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/UserProfile" class="breadcrumb-link">Perfil de la Compañía</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header" style="color:darkred">
+                    <a href="~/CompanyCreate/ProductList" class="btn btn-primary btn-xs">Lista de Productos</a> - Campos marcados con * son obligatorios
+                </h5>
+                <div class="card-body">
+                    @Html.ValidationSummary()
+                    <form id="validationform" method="post" data-parsley-validate="" novalidate="">
+                        @Html.AntiForgeryToken()
+                        <h4 style="color:darkblue">Ubicación, Categoría de Producto y Información de Tipo</h4>
+                        <hr />
+                        <div class="form-group">
+                            <label for="input-select">Lista de Países *</label>
+                            <select class="form-control" id="country" name="CountryId">
+                                <option>-- Seleccione un País --</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-select">Lista de Ciudades *</label>
+                            <select class="form-control" id="city" name="CityId" disabled>
+                                <option>-- Primero Seleccione un País --</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-select">Lista de Categoría *</label>
+                            <select class="form-control" id="category" name="CategoryId">
+                                <option>-- Seleccione una Categoría --</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-select">Lista de Tipos *</label>
+                            <select class="form-control" id="subcategory" name="SubcategoryId" disabled>
+                                <option>-- Primero Seleccione una Categoría --</option>
+
+                            </select>
+                        </div>
+                        <hr />
+                        <h4 style="color:darkblue">Información del Producto</h4>
+                        <hr />
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Producto No: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="ProductNo" value="@Model.ProductNo" placeholder="Producto No" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Nombre del Producto: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="Name" value="@Model.Name" placeholder="Nombre del Producto" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Título del Producto / Eslogan: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="Title" value="@Model.Title" placeholder="Título del Producto / Eslogan" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Descripción del Producto:</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <textarea name="Desc" class="form-control" placeholder="Descripción del Producto"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Precio de Venta: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" placeholder="Precio de Venta" name="SellingPrice" value="@Model.SellingPrice" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Precio Descontado:</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" placeholder="Precio con descuento (si hay descuento)" name="DicsountPrice" class="form-control">
+                            </div>
+                        </div>
+                        <hr />
+                        <h4 style="color:darkblue">Información Detallada del Producto</h4>
+                        <hr />
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Advertencias:</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <textarea name="ProductDetail.Warning" class="form-control" placeholder="Advertencias relacionadas con el producto"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Detalles de Producto:</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <textarea name="ProductDetail.Detail" class="form-control" placeholder="Detalles de Producto"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Contenido:</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <textarea name="ProductDetail.Articles" class="form-control" placeholder="Contenido del producto"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Recomendaciones:</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <textarea name="ProductDetail.Offers" class="form-control" placeholder="Recomendaciones de Productos"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Tiempo de Servicio: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="ProductDetail.ShopServiceTime" value="@Model.ProductDetail.ShopServiceTime" placeholder="Tiempo de Servicio en el Lugar (minutos)" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Plazo de Entrega del Pedido: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="ProductDetail.OrderTime" value="@Model.ProductDetail.OrderTime" placeholder="Tiempo de Entrega del Pedido (minutos)" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Fecha Actualizada: *</label>
+                            <div class="col-lg-10">
+                                <input class="form-control " id="password" name="UpdatedDate" type="date" required />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group row text-right">
+                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                <button type="submit" class="btn btn-space btn-primary">Actualizar Información del Producto</button>
+                                <a href="~/CompanyCreate/ProductList" class="btn btn-space btn-secondary">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

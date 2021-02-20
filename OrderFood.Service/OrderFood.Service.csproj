@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{12AAF459-B7BB-4FCC-A8F2-71F11F82CF24}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OrderFood.Service</RootNamespace>
+    <AssemblyName>OrderFood.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdService\AdService.cs" />
+    <Compile Include="AdService\IAdService.cs" />
+    <Compile Include="ApplicationUserService\ApplicationUserService.cs" />
+    <Compile Include="ApplicationUserService\IApplicationUserService.cs" />
+    <Compile Include="CancelRequestService\CancelRequestService.cs" />
+    <Compile Include="CancelRequestService\ICancelRequestService.cs" />
+    <Compile Include="CategoryService\CategoryService.cs" />
+    <Compile Include="CategoryService\ICategoryService.cs" />
+    <Compile Include="CityService\CityService.cs" />
+    <Compile Include="CityService\ICityService.cs" />
+    <Compile Include="CommentService\CommentService.cs" />
+    <Compile Include="CommentService\ICommentService.cs" />
+    <Compile Include="CompanyContactService\CompanyContactService.cs" />
+    <Compile Include="CompanyContactService\ICompanyContactService.cs" />
+    <Compile Include="CompanyService\CompanyService.cs" />
+    <Compile Include="CompanyService\ICompanyService.cs" />
+    <Compile Include="CompanySocialMediaService\CompanySocialMediaService.cs" />
+    <Compile Include="CompanySocialMediaService\ICompanySocialMediaService.cs" />
+    <Compile Include="ComplainService\ComplainService.cs" />
+    <Compile Include="ComplainService\IComplainService.cs" />
+    <Compile Include="ContactService\ContactService.cs" />
+    <Compile Include="ContactService\IContactService.cs" />
+    <Compile Include="CountryService\CountryService.cs" />
+    <Compile Include="CountryService\ICountryService.cs" />
+    <Compile Include="KindService\IKindService.cs" />
+    <Compile Include="KindService\KindService.cs" />
+    <Compile Include="LogService\ILogService.cs" />
+    <Compile Include="LogService\LogService.cs" />
+    <Compile Include="MessageForUserService\MessageForUserService.cs" />
+    <Compile Include="MessageForUserService\IMessageForUserService.cs" />
+    <Compile Include="MessageFromCompanyService\IMessageFromCompanyService.cs" />
+    <Compile Include="MessageFromCompanyService\MessageFromCompanyService.cs" />
+    <Compile Include="OrderService\IOrderService.cs" />
+    <Compile Include="OrderService\OrderService.cs" />
+    <Compile Include="PaymentService\IPaymentService.cs" />
+    <Compile Include="PaymentService\PaymentService.cs" />
+    <Compile Include="PictureService\IPictureService.cs" />
+    <Compile Include="PictureService\PictureService.cs" />
+    <Compile Include="ProductDetailService\IProductDetailService.cs" />
+    <Compile Include="ProductDetailService\ProductDetailService.cs" />
+    <Compile Include="ProductService\IProductService.cs" />
+    <Compile Include="ProductService\ProductService.cs" />
+    <Compile Include="ProfilePhotoService\IProfilePhotoService.cs" />
+    <Compile Include="ProfilePhotoService\ProfilePhotoService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendMailService\ISendMailService.cs" />
+    <Compile Include="SendMailService\SendMailService.cs" />
+    <Compile Include="SliderService\ISliderService.cs" />
+    <Compile Include="SliderService\SliderService.cs" />
+    <Compile Include="SocialMediaService\ISocialMediaService.cs" />
+    <Compile Include="SocialMediaService\SocialMediaService.cs" />
+    <Compile Include="SubcategoryService\ISubcategoryService.cs" />
+    <Compile Include="SubcategoryService\SubcategoryService.cs" />
+    <Compile Include="ToMakeService\IToMakeService.cs" />
+    <Compile Include="ToMakeService\ToMakeService.cs" />
+    <Compile Include="VideoAdService\IVideoAdService.cs" />
+    <Compile Include="VideoAdService\VideoAdService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OrderFood.Business\OrderFood.Business.csproj">
+      <Project>{615c746e-bb90-43d2-8c52-eef98a3e4360}</Project>
+      <Name>OrderFood.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrderFood.Data\OrderFood.Data.csproj">
+      <Project>{09b2587e-94f7-4b93-b4fc-92d0e2d90c4c}</Project>
+      <Name>OrderFood.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrderFood.Entity\OrderFood.Entity.csproj">
+      <Project>{c76f994a-b2be-4591-a42a-1f09e4b68439}</Project>
+      <Name>OrderFood.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

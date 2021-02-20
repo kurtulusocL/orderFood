@@ -1,0 +1,11 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Picture>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="mr-4">
+        <img src="~/img/foto/@item.ImageUrl" title="@item.Product.Title" style="max-height:90px;min-height:90px;max-width:90px;min-width:90px" alt="@item.ImageUrl" class="user-avatar-lg">
+    </div>
+}

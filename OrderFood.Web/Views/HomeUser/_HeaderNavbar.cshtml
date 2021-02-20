@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+
+<ul class="dropdown-menu dropdown-menu-right connection-dropdown">
+    <li class="connection-list">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                <a href="~/HomeUser/Index" class="connection-item"><img src="~/img/homepage.jpg" style="max-height:35px;min-height:35px;min-width:35px;max-width:35px" alt="img" title="@Session["KullanıcıAdıSoyadı"]"> <span>@User.Identity.Name</span></a>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                <a href="~/Home/Index" class="connection-item"><img src="~/img/Logo 3.png" style="max-height:35px;min-height:35px;min-width:35px;max-width:35px" alt="img" title="provechoo.com"> <span>Inicio</span></a>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                <a href="~/Product/Index" class="connection-item"><img src="~/img/food.jpg" style="max-height:35px;min-height:35px;min-width:35px;max-width:35px" alt="img" title="productos"> <span>Ordenar</span></a>
+            </div>
+        </div>        
+    </li>
+</ul>

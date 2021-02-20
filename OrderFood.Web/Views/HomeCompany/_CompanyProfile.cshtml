@@ -1,0 +1,23 @@
+﻿@model OrderFood.Entity.Models.ProfilePhoto
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+        <a href="~/HomeCompany/UserProfile" class="connection-item">
+            <img src="~/img/profile/@Model.Photo" alt="@Model.Photo">
+            <span>Perfil</span>
+        </a>
+    </div>
+}
+else
+{
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+        <a href="~/HomeCompany/UserProfile" class="connection-item">
+            <img src="~/img/Logo 3.png" alt="img">
+            <span>Perfil</span>
+        </a>
+    </div>
+}

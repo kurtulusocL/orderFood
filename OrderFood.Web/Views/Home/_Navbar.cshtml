@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="menu-area">
+    <!-- Navbar -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <!-- Left nav -->
+            <ul class="nav navbar-nav">
+                <li><a href="~/Home/Index">Inicio</a></li>
+                <li>
+                    <a href="#">Categorías de Comidas <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @{
+                            Html.RenderAction("_NavbarProductCategory", "Home");
+                        }                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Tu Ubicación <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @{ 
+                            Html.RenderAction("_NavbarProductCountry", "Home");
+                        }
+                    </ul>
+                </li>                             
+                <li>
+                    <a href="#">Países <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @{
+                            Html.RenderAction("_NavbarCountry", "Home");
+                        }
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Ciudades <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @{
+                            Html.RenderAction("_NavbarCity", "Home");
+                        }
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Todas <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="~/Company/Index">Empresas</a></li>
+                        <li><a href="~/Product/Index">Comidas</a></li>
+                        <li><a href="~/Country/Index">Países</a></li>
+                        <li><a href="~/City/Index">Ciudades</a></li>
+                    </ul>
+                </li>
+                <li><a href="~/Contact/Index">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

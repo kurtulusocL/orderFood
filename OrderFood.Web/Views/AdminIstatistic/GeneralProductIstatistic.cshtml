@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "General Product Statistics";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel tasks-widget">
+                    <header class="panel-heading">
+                        <div class=" add-task-row">
+                            @ViewBag.Title <a class="btn btn-primary btn-sm pull-right" href="~/AdminIstatistic/CompanyList">Homepage</a>
+                        </div>
+                    </header>
+                    <div class="panel-body">
+                        <div class="task-content">
+                            <ul class="task-list">
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Top Selling Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralMostSellProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Least Sold Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralLessSellProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Most Popular Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralMostPopularProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Least Popular Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralLessPopularProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>                               
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Most Expensive Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralMostExpensiveProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Cheapest Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralMostCheapProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Products with the Most Complaints</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralMostComplainProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Products with the Least Complaints</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralLessComplainProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">The Status of the Products Receiving the Most Complaints</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralProductMostStatus" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">The Conditions of the Products Receiving the Least Complaints</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/GeneralProductLessStatus" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>                                
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>

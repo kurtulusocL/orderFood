@@ -1,0 +1,55 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Product>
+@{
+    ViewBag.Title = "Comidas más populares en";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="dashboard-influence">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h3 class="mb-2">@ViewBag.Title</h3>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="~/HomeUser/Index" class="breadcrumb-link">Inicio</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-block">
+                    <h3 class="section-title">@ViewBag.Title</h3>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card campaign-card text-center">
+                        <div class="card-body">
+                            @{
+                                Html.RenderAction("_MostPopularProductPhoto", "HomeUser", new { id = item.Id });
+                            }
+                            <div class="campaign-info">
+                                <h3 class="mb-1">@item.Name</h3>
+                                @if (item.CompanyId != null)
+                                {
+                                    <h3 class="mb-1"><a href="~/Product/Company/@item.CompanyId">Empresa: @item.Company.Name</a></h3>
+                                }
+                                <p class="mb-3">En total @item.Orders.Count() ordenar y vender.</p>
+                                <p class="mb-1">En total:<span class="text-dark font-medium ml-2">@item.Like.Value.ToString() gusto</span></p>
+                                <p>En total: <span class="text-dark font-medium ml-2">@item.Hit.Value.ToString() interacción</span></p>
+                                <a href="~/Product/Detail/@item.Id">Detalle de la Comida </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

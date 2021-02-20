@@ -1,0 +1,30 @@
+﻿@{ 
+    Layout = null;
+}
+
+<ul class="dropdown-menu dropdown-menu-right connection-dropdown">
+    <li class="connection-list">
+        <div class="row">
+            @{ 
+                Html.RenderAction("_CompanyProfile", "HomeCompany");
+            }
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                <a href="~/HomeCompany/HowCreate" class="connection-item"><img src="~/img/Soru İşareti.jpg" style="max-height:35px;min-height:35px;min-width:35px;max-width:35px" alt="img" title="como se hace"> <span>Como se Hace</span></a>
+            </div>
+           @{ 
+               Html.RenderAction("_OrderCompany", "HomeCompany");
+           }
+        </div>
+        <div class="row">
+            @{
+                Html.RenderAction("_OrderCompanySent", "HomeCompany");
+            }
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                <a href="~/HomeCompany/MyCompanyList" class="connection-item"><img src="~/img/firmalist.jpg" style="max-height:35px;min-height:35px;min-width:35px;max-width:35px" alt="img" title="Mis Compañías"><span>Mis Compañías</span></a>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                <a href="~/Home/Index" class="connection-item"><img src="~/img/Logo 3.png" style="max-height:35px;min-height:35px;min-width:35px;max-width:35px" alt="img" title="provechoo.com"><span>Inicio</span></a>
+            </div>
+        </div>
+    </li>
+</ul>

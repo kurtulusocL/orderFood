@@ -1,0 +1,16 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Category>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="~/Category/Detail/@item.Id">@item.Name <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+           @{ 
+               Html.RenderAction("_NavbarProductSubcategory", "Home", new { id = item.Id });
+           }           
+        </ul>
+    </li>
+}

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<OrderFood.Data.Identity.ApplicationUser>
+@{
+    ViewBag.Title = "Su Perfil y Lista De Compañía";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<div class="dashboard-influence">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h3 class="mb-2">@ViewBag.Title</h3>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card influencer-profile-data">
+                    <div class="card-body">
+                        <div class="row">
+                            @{
+                                Html.RenderAction("_ProfilePhoto", "HomeCompany");
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-xl-10 col-lg-8 col-md-8 col-sm-8 col-12">
+                                    <div class="user-avatar-info">
+                                        <div class="m-b-20">
+                                            <div class="user-avatar-name">
+                                                <h2 class="mb-1">@item.NameLastname</h2>
+                                            </div>
+                                            <div class="rating-star d-inline-block">
+                                                <p class="d-inline-block text-dark"> @item.UserName</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <a href="~/CompanyCreate/ProfilePhotoCreate/@item.Id" class="btn btn-success btn-xs">Añadir Imagen de Perfil</a>
+                                            <a href="~/CompanyCreate/ProfilePhotoEdit/@item.Id" class="btn btn-dark btn-xs">Actualizar Imagen de Perfil</a>
+                                        </div>
+                                        <br />
+                                        <div class="user-avatar-address">
+                                            <p class="border-bottom pb-3">
+                                                <span class="d-xl-inline-block d-block mb-2"><i class="fa fa-map-marker-alt mr-2 text-primary "></i>@item.Province, @item.City, @item.Country</span>
+                                                <span class="mb-2 ml-xl-4 d-xl-inline-block d-block">Fecha de Unirse: @item.CreatedDate.ToShortDateString()</span>
+                                                <span class=" mb-2 d-xl-inline-block d-block ml-xl-4">
+                                                    @item.Gender
+                                                </span>
+                                                @if (item.Birthdate != null)
+                                                {
+                                            <span class=" mb-2 d-xl-inline-block d-block ml-xl-4">Cumpleaños: @item.Birthdate.Value.ToShortDateString() </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class=" mb-2 d-xl-inline-block d-block ml-xl-4">Sin información </span>
+                                                }
+                                            </p>
+                                            <div class="mt-3">
+                                                <a class="badge badge-light mr-1">Tarea en la Compañía: @item.RespondTitle</a>
+                                                <a class="badge badge-light mr-1">Número de Teléfono: @item.PhoneNumber</a>
+                                                <a class="badge badge-light mr-1">E-Mail: @item.Email</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-block">
+                    <h3 class="section-title">Todas Las Compañías Que Registras -  <a href="~/CompanyCreate/CompanyList" class="btn btn-success btn-xs">Para Información y Cambios</a></h3>
+                </div>
+                @{
+                    Html.RenderAction("_CompanyList", "HomeCompany");
+                }
+            </div>
+        </div>
+    </div>
+</div>

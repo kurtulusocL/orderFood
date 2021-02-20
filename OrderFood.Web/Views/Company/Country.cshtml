@@ -1,0 +1,121 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Company>
+@{
+    ViewBag.Title = "Lista de Empresas Que Puede Ordenar pPor País";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>@ViewBag.Title</h2>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    <li><a href="~/Product/Index">Comidas</a></li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-blog-archive">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-blog-archive-area aa-blog-archive-2">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="aa-blog-content">
+                                <div class="row">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="col-md-4 col-sm-4">
+                                            <article class="aa-latest-blog-single">
+                                                <figure class="aa-blog-img">
+                                                    <a><img alt="@item.Logo" title="@item.Name" src="~/img/logo/@item.Logo" style="max-height:220px;max-width:300px;min-height:220px;min-width:300px;"></a>
+                                                    <figcaption class="aa-blog-img-caption">
+                                                        <span>@item.Products.Count() comida</span>
+                                                        <a>@item.Orders.Count() ordenar</a>
+                                                        <a><i class="fa fa-eye"> @item.Hit.Value.ToString()</i></a>
+                                                        <a><i class="fa fa-thumbs-o-up"> @item.Like.Value.ToString()</i></a>
+                                                    </figcaption>
+                                                </figure>
+                                                <div class="aa-blog-info">
+                                                    <h3 class="aa-blog-title"><a href="~/Company/Detail/@item.Id">@item.Name</a></h3>
+                                                    <p>@item.Title</p>
+                                                    <p>
+                                                        <a class="aa-read-mor-btn" href="~/Company/Detail/@item.Id">Detalle de la Empresa <span class="fa fa-long-arrow-right"></span></a>
+                                                    </p>                                                    
+                                                    <p>
+                                                        <a class="aa-read-mor-btn" href="~/Company/City/@item.CityId">@item.City.Name <span class="fa fa-long-arrow-right"></span></a>
+                                                    </p>
+                                                    <p>
+                                                        <a class="aa-read-mor-btn" href="~/Company/Kind/@item.KindId">@item.Kind.Name <span class="fa fa-long-arrow-right"></span></a>
+                                                    </p>
+                                                </div>
+                                                @{
+                                                    Html.RenderAction("_HitRead", "Company", new { id = item.Id });
+                                                }
+                                            </article>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="pagination" align="center">
+                                <div class="pagination-large">
+                                    @Html.PagedListPager(Model, Page => Url.Action("Country", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <aside class="aa-blog-sidebar">
+                                <div class="aa-sidebar-widget">
+                                    <h3>Países</h3>
+                                    <div class="tag-cloud">
+                                        @{
+                                            Html.RenderAction("_CategoryCountry", "Home");
+                                        }
+                                    </div>
+                                </div>
+                                <div class="aa-sidebar-widget">
+                                    <h3>Ciudades</h3>
+                                    <div class="tag-cloud">
+                                        @{
+                                            Html.RenderAction("_CategoryCity", "Home");
+                                        }
+                                    </div>
+                                </div>
+                                <div class="aa-sidebar-widget">
+                                    <h3>Anuncio</h3>
+                                    <div class="aa-recently-views">
+                                        <ul>
+                                            @{
+                                                Html.RenderAction("_CategoryAd", "Home");
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>                               
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-subscribe-area">
+                    @{
+                        Html.RenderAction("_CompanyVideoAd", "Home");
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

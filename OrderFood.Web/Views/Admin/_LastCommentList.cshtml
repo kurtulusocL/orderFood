@@ -1,0 +1,29 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Comment>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="panel-body">
+        @item.Text => @item.Text
+        <span>
+            @if (item.ProductId != null)
+            {
+                <span>
+                    Product Comment:
+                </span>
+                <strong>@item.Product.Name</strong><br />
+                <strong>@item.Product.City.Name / @item.Product.Country.Name</strong>
+            }
+            @if (item.CompanyId != null)
+            {
+                <span>
+                    Company Comment:
+                </span>
+                <strong>@item.Company.Name</strong><br />
+                <strong>@item.Company.City.Name / @item.Company.Country.Name</strong>
+            }
+        </span>
+    </div>
+}

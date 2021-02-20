@@ -1,0 +1,235 @@
+﻿
+@{
+    ViewBag.Title = "Other statistics necessary for provechoo.com";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel tasks-widget">
+                    <header class="panel-heading">
+                        <div class=" add-task-row">
+                            @ViewBag.Title <a class="btn btn-primary btn-sm pull-right" href="~/AdminIstatistic/CompanyList">Homepage</a>
+                        </div>
+                    </header>
+                    <div class="panel-body">
+                        <div class="task-content">
+                            <ul class="task-list">
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Cities with the Most Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostProductCity" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Cities with the Least Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessProductCity" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Countries with the Most Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostProductCountry" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Countries with the Least Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessProductCountry" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Most Ordered Cities</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostOrderCity" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Least Ordered Cities</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessOrderCity" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Types of Companies with the Most Orders</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostOrderCompanyKind" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Least Ordered Company Types</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessOrderCompanyKind" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Most Ordered Product Categories</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostOrderProductCategory" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Least Ordered Product Categories</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessOrderProductCategory" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Most Ordered Product Types</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostOrderProductSubcategory" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Least Ordered Product Types</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessOrderProductSubcategory" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>   
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Categories with the Most Companies</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostCategoryCompany" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Categories with Least Companies</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessCategoryCompany" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Categories with the Most Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostCategoryProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Categories with the Least Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessCategoryProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Product Types with the Most Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostSubcategoryProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Product Types with the Least Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessSubcategoryProduct" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Most Commented Companies</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostCompanyComment" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Least Commented Companies</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessCompanyComment" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Most Commented Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostProductComment" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Least Commented Products</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessProductComment" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Companies Receiving the Most Complaints</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostCompanyComplain" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Companies Receiving Least Complaints</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessCompanyComplain" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Products with the Most Complaints</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/MostProductComplain" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">Products with the Least Complaints</span>
+                                        <div class="pull-right">
+                                            <a href="~/AdminIstatistic/LessProductComplain" class="btn btn-success btn-xs"><i class="icon-ok"></i> Review</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>

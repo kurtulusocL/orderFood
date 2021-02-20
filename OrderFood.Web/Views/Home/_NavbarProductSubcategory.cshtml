@@ -1,0 +1,9 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Subcategory>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li><a href="~/Subcategory/Detail/@item.Id">@item.Name</a></li>
+}

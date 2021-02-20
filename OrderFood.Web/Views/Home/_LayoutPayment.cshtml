@@ -1,0 +1,9 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Payment>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <img src="~/img/payment/@item.Photo" style="max-height:25px;max-width:35px;min-height:25px;min-width:35px" title="@item.Name" alt="@item.Photo" />
+}

@@ -1,0 +1,52 @@
+﻿@model OrderFood.Web.Models.ProductEditDiscount
+@{
+    ViewBag.Title = "Update the Discounted Price of the Product";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <a href="~/AdminCreate/ProductList" class="btn btn-primary btn-xs">Product List</a>
+                            @if (TempData["message"] != null)
+                            {
+                                <strong style="color:darkblue">@TempData["message"]</strong>
+                            }
+                            @if (TempData["err"] != null)
+                            {
+                                <strong style="color:darkred">@TempData["err"]</strong>
+                            }
+                            <hr />
+                            @ViewBag.Title - <h4 style="color:darkred">Fields marked with * are required</h4>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                @Html.ValidationSummary()
+                                <form class="cmxform form-horizontal tasi-form" id="signupForm" method="post" action="">
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">Product Discounted Price: *</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="Discount" type="text" required />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-success" type="submit">Update Discount Price</button>
+                                            <a href="~/AdminCreate/ProductList" class="btn btn-warning">Cancel</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

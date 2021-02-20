@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="aa-footer-top-area">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="aa-footer-widget">
+                        <h3>Menú</h3>
+                        <ul class="aa-footer-nav">
+                            <li><a href="~/Home/Index">Inicio</a></li>
+                            <li><a href="~/Product/Index">Comidas</a></li>
+                            <li><a href="~/Company/Index">Empresas</a></li>
+                            <li><a href="~/City/Index">Lista de Ciudades</a></li>  
+                            <li><a href="~/Country/Index">Lista de Países</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="aa-footer-widget">
+                        <div class="aa-footer-widget">
+                            <h3>Menú</h3>
+                            <ul class="aa-footer-nav">                                
+                                <li><a href="~/Category/Index">Categorías de Comida</a></li>
+                                <li><a href="~/Subcategory/Index">Tipos de </a></li>
+                                <li><a href="~/Contact/Index">Contacto</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="aa-footer-widget">
+                        <div class="aa-footer-widget">
+                            <h3>Usted</h3>
+                            <ul class="aa-footer-nav">
+                                <li><a href="~/Home/UserArgeement">Acuerdo del Usuario</a></li>
+                                <li><a href="~/Home/CompanyDeal">Acuerdo de Empresa</a></li>
+                                <li><a href="~/Home/SecurityAndCookie">Política de Seguridad y Cookies</a></li>
+                                <li><a href="~/Home/KVKHK">Sus Datos Personales y Su Procesamiento</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="aa-footer-widget">
+                        <div class="aa-footer-widget">
+                            <h3>Contacto</h3>
+                            @{
+                                Html.RenderAction("_FooterContact", "Home");
+                            }
+                            <div class="footer-social">
+                                @{
+                                    Html.RenderAction("_FooterSocialMedia", "Home");
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Audit>
+@{
+    ViewBag.Title = "Log Datas Search Page";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <section class="panel">
+            <header class="panel-heading">
+                @ViewBag.Title
+            </header>
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <div class="clearfix"> </div>
+                    <div class="space15"></div>
+                    <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>IP Address</th>
+                                <th>Mac Address</th>
+                                <th>Browser</th>
+                                <th>Device</th>
+                                <th>Is Phone</th>
+                                <th>Phone Model</th>
+                                <th>Access URL</th>
+                                <th>Language</th>
+                                <th>Browser Version</th>
+                                <th>Platform</th>
+                                <th>Access Time</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="">
+                                    <td>
+                                        @if (item.UserName == "Anonymous")
+                                        {
+                                            <span>Guest</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@item.UserName</span>
+                                        }
+                                    </td>
+                                    <td>@item.IPAddress</td>
+                                    <td>@item.MacAddress</td>
+                                    <td>@item.Browser</td>
+                                    <td class="center">
+                                        @if (item.Device != null)
+                                        {
+                                            <span>@item.Device</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Computer</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.IsMobile == true)
+                                        {
+                                            <span>Phone</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Computer</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.DeviceModel != null)
+                                        {
+                                            <span>@item.DeviceModel</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Computer</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.AreaAccessed == "/")
+                                        {
+                                            <span>Homepage</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@item.AreaAccessed</span>
+                                        }
+                                    </td>
+                                    <td>@item.Language</td>
+                                    <td>@item.BrowserVersion</td>
+                                    <td>@item.Platform</td>
+                                    <td>@item.Timestamp.ToLongDateString()</td>
+                                    <td>
+                                        @if (User.IsInRole("Admin") || User.IsInRole("Asistant"))
+                                        {
+                                            <a href="~/Log/Delete/@item.Id" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure ?')">Delete</a>
+                                        }
+                                        else
+                                        {
+                                            <span>you have no authority.</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("SearchLog", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

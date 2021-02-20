@@ -1,0 +1,273 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Product>
+@{
+    ViewBag.Title = "Todas las Comidas por Tipo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>@ViewBag.Title</h2>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    <li><a href="~/Country/Index">Países</a></li>
+                    <li><a href="~/City/Index">Ciudades</a></li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-product-category">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-8 col-md-push-3">
+                <div class="aa-product-catg-content">
+                    <div class="aa-product-catg-head">
+                        <div class="aa-product-catg-head-right">
+                            <a id="grid-catg" href="#"><span class="fa fa-th"></span></a>
+                            <a id="list-catg" href="#"><span class="fa fa-list"></span></a>
+                        </div>
+                    </div>
+                    <div class="aa-product-catg-body">
+                        <ul class="aa-product-catg">
+                            @foreach (var item in Model)
+                            {
+                                <li>
+                                    <figure>
+                                        @{
+                                            Html.RenderAction("_ProductPhoto", "Home", new { id = item.Id });
+                                        }
+                                        <form action="" method="get">
+                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="@item.UserId" value="@item.UserId" />
+                                            @if (item.CompanyId != null)
+                                            {
+                                                <input type="hidden" class="comp" name="@item.CompanyId" value="@item.CompanyId" />
+                                            }
+                                            <input type="hidden" name="w3ls_item" value="@item.Name" />
+                                            @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                                            {
+                                                <input type="hidden" name="@item.DicsountPrice.Value" value="@item.DicsountPrice.Value" />
+                                            }
+                                            else
+                                            {
+                                                <input type="hidden" name="@item.SellingPrice" value="@item.SellingPrice" />
+                                            }
+                                            @if (User.Identity.IsAuthenticated == true)
+                                            {
+                                                <button type="button" class="aa-add-card-btn" name="@item.Id"><span class="fa fa-shopping-cart"></span>Añadir al Carrito</button>
+                                            }
+                                            @if (User.Identity.IsAuthenticated == false)
+                                            {
+                                                <a class="aa-add-card-btn"><span class="fa fa-shopping-cart"></span>Iniciar Sesión o Registrarse</a>
+                                            }
+                                        </form>
+                                        <figcaption>
+                                            <h4 class="aa-product-title"><a href="~/Product/Detail/@item.Id">@item.Name</a></h4>
+                                            @if (item.CompanyId != null)
+                                            {
+                                                <h4 class="aa-product-title"><a href="~/Company/Detail/@item.CompanyId">@item.Company.Name</a></h4>
+                                            }
+                                            @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                                            {
+                                                <span class="aa-product-price">@item.DicsountPrice.Value.ToString()</span>
+                                                <span class="aa-product-price">
+                                                    <del>@item.SellingPrice.ToString()</del>
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="aa-product-price">@item.SellingPrice.ToString()</span>
+                                            }
+                                        </figcaption>
+                                        <figcaption>
+                                            <p>@item.Title</p>
+                                            <a href="~/Product/City/@item.CityId">@item.City.Name</a>, <a href="~/Product/Country/@item.CountryId">@item.Country.Name</a> <br />
+                                            <a href="~/Product/Category/@item.CategoryId">@item.Category.Name</a>
+                                        </figcaption>
+                                        @{
+                                            Html.RenderAction("_HitCount", "Product", new { id = item.Id });
+                                        }
+                                    </figure>
+                                    <div class="aa-product-hvr-content">
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="@item.Like.Value.ToString()"><span class="fa fa-heart-o"></span></a>
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="@item.Hit.Value.ToString()"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                        <a href="#" data-toggle2="tooltip" data-placement="top" title="Revisión" data-toggle="modal" data-target="#@item.Id"><span class="fa fa-search"></span></a>
+                                    </div>
+                                    <span class="aa-badge aa-sale">@item.Orders.Count() Ordenar</span>
+                                </li>
+                            }
+                        </ul>
+                        @foreach (var item in Model)
+                        {
+                            <div class="modal fade" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="aa-product-view-slider">
+                                                        <div class="simpleLens-gallery-container" id="demo-1">
+                                                            <div class="simpleLens-container">
+                                                                <div class="simpleLens-big-image-container">
+                                                                    @{
+                                                                        Html.RenderAction("_ProductModalBigPhoto", "Home", new { id = item.Id });
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div class="simpleLens-thumbnails-container">
+                                                                @{
+                                                                    Html.RenderAction("_ProductModalSubPhoto", "Home", new { id = item.Id });
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="aa-product-view-content">
+                                                        <h3>@item.Name</h3>
+                                                        <div class="aa-price-block">
+                                                            @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                                                            {
+                                                                <span class="aa-product-view-price">Precio: @item.DicsountPrice.Value.ToString()</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="aa-product-view-price">Precio: @item.SellingPrice.ToString()</span>
+                                                            }
+                                                            <p class="aa-product-avilability">En Total: <span>@item.Orders.Count() Ordenar</span></p>
+                                                            @if (item.CompanyId != null)
+                                                            {
+                                                                <p class="aa-product-avilability">Empresa: <span>@item.Company.Name</span></p>
+                                                            }
+                                                        </div>
+                                                        <p>@item.Title</p>
+                                                        <h4>Nuestros Filtros</h4>
+                                                        <div class="aa-prod-view-size">
+                                                            <ul>
+                                                                <li><a href="~/Product/Country/@item.CountryId" class="btn btn-link">País: @item.Country.Name</a></li>
+                                                                <li><a href="~/Product/City/@item.CityId" class="btn btn-link">Ciudad: @item.City.Name</a></li>
+                                                                <li><a href="~/Product/Category/@item.CategoryId" class="btn btn-link">Categoría: @item.Category.Name</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="aa-prod-quantity">
+                                                            @if (item.CompanyId != null)
+                                                            {
+                                                                <p class="aa-prod-category">
+                                                                    Para Más Productos de la Empresa: <a href="~/Company/Detail/@item.CompanyId">@item.Company.Name</a>
+                                                                </p>
+                                                            }
+                                                        </div>
+                                                        <div class="aa-prod-view-bottom">
+                                                            <form action="" method="get">
+                                                                <input type="hidden" name="add" value="1" />
+                                                                <input type="hidden" name="@item.UserId" value="@item.UserId" />
+                                                                @if (item.CompanyId != null)
+                                                                {
+                                                                    <input type="hidden" class="comp" name="@item.CompanyId" value="@item.CompanyId" />
+                                                                }
+                                                                <input type="hidden" name="w3ls_item" value="@item.Name" />
+                                                                @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                                                                {
+                                                                    <input type="hidden" name="@item.DicsountPrice.Value" value="@item.DicsountPrice.Value" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="hidden" name="@item.SellingPrice" value="@item.SellingPrice" />
+                                                                }
+                                                                @if (User.Identity.IsAuthenticated == true)
+                                                                {
+                                                                    <button type="button" class="aa-add-card-btn" name="@item.Id"><span class="fa fa-shopping-cart"></span>Añadir al Carrito</button>
+                                                                }
+                                                                @if (User.Identity.IsAuthenticated == false)
+                                                                {
+                                                                    <a class="aa-add-card-btn"><span class="fa fa-shopping-cart"></span>Iniciar Sesión o Registrarse</a>
+                                                                }
+                                                            </form>
+                                                            <a href="~/Product/Detail/@item.Id" class="aa-add-to-cart-btn">Detalle</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="pagination">
+                        <div class="pagination-large">
+                            @Html.PagedListPager(Model, Page => Url.Action("Subcategory", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-4 col-md-pull-9">
+                <aside class="aa-sidebar">
+                    <div class="aa-sidebar-widget">
+                        <h3>Países</h3>
+                        <div class="tag-cloud">
+                            @{
+                                Html.RenderAction("_ProductCountry", "Home");
+                            }
+                        </div>
+                    </div>
+                    <div class="aa-sidebar-widget">
+                        <h3>Ciudades</h3>
+                        <div class="tag-cloud">
+                            @{
+                                Html.RenderAction("_ProductCity", "Home");
+                            }
+                        </div>
+                    </div>
+                    <div class="aa-sidebar-widget">
+                        <h3>Anuncio</h3>
+                        <div class="aa-recently-views">
+                            <ul>
+                                @{
+                                    Html.RenderAction("_PromotionAd", "Home");
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="aa-sidebar-widget">
+                        <h3>Categorias</h3>
+                        <div class="tag-cloud">
+                            @{
+                                Html.RenderAction("_ProductCategory", "Home");
+                            }
+                        </div>
+                    </div>
+                    <div class="aa-sidebar-widget">
+                        <h3>Especies</h3>
+                        <div class="tag-cloud">
+                            @{
+                                Html.RenderAction("_ProductSubcategory", "Home");
+                            }
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section id="aa-subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-subscribe-area">
+                    @{
+                        Html.RenderAction("_CompanyVideoAd", "Home");
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

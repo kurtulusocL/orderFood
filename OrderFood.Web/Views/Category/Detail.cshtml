@@ -1,0 +1,84 @@
+﻿@model OrderFood.Entity.Models.Category
+@{
+    ViewBag.Title = "Detalles de las Categorías de Comidas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="banner" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>@ViewBag.Ttle</h2>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    <li><a href="~/Subcategory/Index">Tipos</a></li>
+                    <li><a href="~/Country/Index">Países</a></li>
+                    <li><a href="~/City/Index">Ciudades</a></li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-product-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-product-details-area">
+                    <div class="aa-product-details-content">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <div class="aa-product-view-slider">
+                                    <div id="demo-1" class="simpleLens-gallery-container">
+                                        <div class="simpleLens-container">
+                                            <div class="simpleLens-big-image-container">
+                                                <a data-lens-image="/img/category/@Model.Photo" class="simpleLens-lens-image">
+                                                    <img src="~/img/category/@Model.Photo" style="max-height:300px;max-width:250px;min-width:250px;min-height:300px" title="@Model.Name" alt="@Model.Photo" class="simpleLens-big-image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                <div class="aa-product-view-content">
+                                    <h3>@Model.Name</h3>
+                                    <div class="aa-prod-quantity">                                        
+                                        <p class="aa-prod-category">
+                                            Comida: <a href="~/Product/Category/@Model.Id">@Model.Products.Count()</a>
+                                        </p>                                       
+                                        <p class="aa-prod-category">
+                                            Tipos de Comida: <a href="~/Subcategory/Category/@Model.Id">@Model.Subcategories.Count()</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aa-product-related-item">
+                        <h3>Platos de Empresas @Model.Name</h3>
+                        <ul class="aa-product-catg aa-related-item-slider">
+                            @{
+                                Html.RenderAction("_CategoryDetailProduct", "Home", new { id = Model.Id });
+                            }
+                        </ul>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-subscribe-area">
+                    @{
+                        Html.RenderAction("_CompanyVideoAd", "Home");
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

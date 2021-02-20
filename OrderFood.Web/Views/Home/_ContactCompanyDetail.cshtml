@@ -1,0 +1,17 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.CompanyContact>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <p>Dirección: @item.Address</p>
+    <ul>
+        <li>Teléfono No. 1: @item.PhoneNumber1</li>
+        <li>Teléfono No.: 2: @item.PhoneNumber2</li>
+        <li>Correo Electrónico: @item.EMail</li>
+    </ul>
+    <p>
+        <iframe src="@item.Location" frameborder="0" allowtransparency="false" style="max-height:450px;max-width:600px;min-height:450px;min-width:600px"></iframe>
+    </p>
+}

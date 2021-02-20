@@ -1,0 +1,85 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.Category>
+@{
+    ViewBag.Title = "Active Product Category List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            @ViewBag.Title
+                            @if (User.IsInRole("Admin") || User.IsInRole("Asistant"))
+                            {
+                                <span>- <a href="~/Category/Create" class="btn btn-primary btn-xs">Add a new product category</a></span>
+                            }
+                            else
+                            {
+                                <span>you have no authority.</span>
+                            }
+                            - <a href="~/Category/CategoryList" class="btn btn-info btn-xs">Product Category List</a>
+                        </header>
+                        <table class="table table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="80">Category Photo</th>
+                                    <th>Category Name</th>
+                                    <th>Product</th>
+                                    <th>Subcategory</th>
+                                    <th>Add Date</th>
+                                    <th>Update Date</th>
+                                    <th>Operations</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="80"><img src="~/img/category/@item.Photo" class="img-responsive" /></td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Products.Count()</td>
+                                        <td>@item.Subcategories.Count()</td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td>
+                                            @if (item.UpdatedDate != null)
+                                            {
+                                                @item.UpdatedDate.Value.ToShortDateString()
+                                            }
+                                            else
+                                            {
+                                                <span>-</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("Asistant"))
+                                            {
+                                                <a href="~/Category/Edit/@item.Id" class="btn btn-success btn-xs">Update</a>
+                                                <a href="~/Category/DeActive/@item.Id" class="btn btn-warning btn-xs">Suspend</a>
+                                                <a href="~/Category/Delete/@item.Id" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure ?')">Delete</a>
+                                            }
+                                            else
+                                            {
+                                                <span>you have no authority.</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("kurtulusocL", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.CancelRequest>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="panel-body">
+
+        @if (item.CompanyId != null)
+        {
+            <span>Name Surname: @item.NameSurname</span>
+            <span>Company: @item.Company.Name</span>
+            <span>Delete Date: @item.When.ToShortDateString()</span>
+            <strong>Request Date: @item.CreatedDate.ToShortDateString()</strong>
+        }
+        else
+        {
+            <span>Name Surname: @item.NameSurname</span>            
+            <span>Delete Date: @item.When.ToShortDateString()</span>
+            <strong>Request Date: @item.CreatedDate.ToShortDateString()</strong>
+        }
+    </div>
+}

@@ -1,0 +1,41 @@
+﻿@model OrderFood.Entity.Models.Product
+@{
+    Layout = null;
+}
+
+@if (Model.ProductDetail.Warning != null)
+{
+    <p>Advertencias: @Model.ProductDetail.Warning</p>
+}
+else
+{
+    <p>No se ha introducido información.</p>
+}
+@if (Model.ProductDetail.Detail != null)
+{
+    <p>Detalle: @Model.ProductDetail.Detail</p>
+}
+else
+{
+    <p>No se ha introducido información.</p>
+}
+@if (Model.ProductDetail.Articles != null)
+{
+    <p>Contenido: @Model.ProductDetail.Articles</p>
+}
+else
+{
+    <p>No se ha introducido información.</p>
+}
+@if (Model.ProductDetail.Offers != null)
+{
+    <p>Sugerencias: @Model.ProductDetail.Offers</p>
+}
+else
+{
+    <p>No se ha introducido información.</p>
+}
+<ul>
+    <li>Tiempo de Servicio del Restaurante: @Model.ProductDetail.ShopServiceTime</li>
+    <li>Tiempo de Servicio del Pedido: @Model.ProductDetail.OrderTime</li>
+</ul>

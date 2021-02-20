@@ -1,0 +1,32 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Product>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card campaign-card text-center">
+            <div class="card-body">
+                @{
+                    Html.RenderAction("_ProfilePeopleChoisePhoto", "HomeUser", new { id = item.Id });
+                }
+                <div class="campaign-info">
+                    <h3 class="mb-1">@item.Name</h3>
+                    <p class="mb-3">Total del Pedido @item.Orders.Count().</p>
+                    <p class="mb-1">Interacción:<span class="text-dark font-medium ml-2">@item.Hit.Value.ToString()</span></p>
+                    <p>Gusto: <span class="text-dark font-medium ml-2">@item.Like.Value.ToString()</span></p>
+                    @if (item.DicsountPrice != null && item.DicsountPrice != Convert.ToDecimal(0.00))
+                    {
+                        <p>Precio: <span class="text-dark font-medium ml-2">@item.DicsountPrice.Value.ToString()</span></p>
+                    }
+                    else
+                    {
+                        <p>Precio: <span class="text-dark font-medium ml-2">@item.SellingPrice.ToString()</span></p>
+                    }
+                    <a href="~/Product/Detail/@item.Id" class="btn btn-success">Revisión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

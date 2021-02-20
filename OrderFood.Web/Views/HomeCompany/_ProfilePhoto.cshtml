@@ -1,0 +1,21 @@
+﻿@model OrderFood.Entity.Models.ProfilePhoto
+@{
+    Layout = null;
+}
+
+@if (Model == null)
+{
+    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-12">
+        <div class="text-center">
+            <img src="~/img/Logo 3.png" alt="img" style="max-height:128px;max-width:128px;min-height:128px;min-width:128px;" class="rounded-circle user-avatar-xxl">
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-12">
+        <div class="text-center">
+            <img src="~/img/profile/@Model.Photo" alt="img" style="max-height:128px;max-width:128px;min-height:128px;min-width:128px;" class="rounded-circle user-avatar-xxl">
+        </div>
+    </div>
+}

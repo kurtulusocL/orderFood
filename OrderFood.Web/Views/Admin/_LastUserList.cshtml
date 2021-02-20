@@ -1,0 +1,22 @@
+﻿@model IEnumerable<OrderFood.Data.Identity.ApplicationUser>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="panel-body">
+        <span>at @item.CreatedDate.ToShortDateString()</span>
+        <p>@item.NameLastname - @item.UserName - @item.Email</p>
+        <p>
+            @if (item.RespondTitle == null)
+            {
+                <strong style="color:darkblue">Personal Member</strong>
+            }
+            @if (item.RespondTitle != "Admin" && item.RespondTitle != null && item.RespondTitle != "Yardımcı Admin" && item.RespondTitle != "Asistan Admin")
+            {
+                <strong style="color:darkgreen">Company Member</strong>
+            }
+        </p>
+    </div>
+}

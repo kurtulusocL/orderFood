@@ -1,0 +1,13 @@
+﻿@model OrderFood.Entity.Models.Company
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    <a class="dropdown-item" href="~/HomeCompany/SendCancel/@Model.Id"><i class="fas fa-user mr-2"></i>Cancelar Cuenta</a>
+}
+else
+{
+
+}

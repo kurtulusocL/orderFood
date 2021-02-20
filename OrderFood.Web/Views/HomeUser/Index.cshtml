@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Tu Perfil";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    TempData["error"] = "No tienes autorización para ver esta página.";
+}
+
+@if (User.IsInRole("Users"))
+{
+    <div class="dashboard-influence">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h3 class="mb-2">Hola @Session["KullanıcıAdıSoyadı"] </h3>
+                        <div class="page-breadcrumb">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @{
+                    Html.RenderAction("_ProfileInformation", "HomeUser");
+                }
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-block">
+                        <h3 class="section-title">Ordenes Pendientes</h3>
+                    </div>
+                    <div class="card">
+                        <div class="campaign-table table-responsive">
+                            @{
+                                Html.RenderAction("_ProfileDeliveryOrder", "HomeUser");
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-block">
+                        <h3 class="section-title">Tus Ordenes</h3>
+                    </div>
+                    <div class="card">
+                        <div class="campaign-table table-responsive">
+                            @{
+                                Html.RenderAction("_ProfileOrder", "HomeUser");
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-block">
+                        <h3 class="section-title">La Gente También Prefiere - <a href="~/HomeUser/OtherPeopleBuy" class="btn btn-primary">Ver todo</a></h3>
+                    </div>
+                </div>
+                @{
+                    Html.RenderAction("_ProfilePeopleChoise", "HomeUser");
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    @TempData["err"]
+}

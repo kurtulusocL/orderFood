@@ -1,0 +1,13 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Country>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="~/Country/Detail/@item.Id">
+            <img src="~/img/country/@item.Photo" title="@item.Name" alt="@item.Photo" style="max-height:20px;max-width:23px;min-height:20px;min-width:23px;">@item.Name
+        </a>
+    </li>
+}

@@ -1,0 +1,97 @@
+﻿@model OrderFood.Entity.Models.Order
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Su Información de Pago y Confirmación de Pedido";
+    TempData["msg"] = "Ingrese Su iIformación, Todos los Campos Son Obligatorios.";
+}
+
+<section id="aa-catg-head-banner">
+    <img src="~/Content/temp/web/img/fashion/fashion-header-bg-8.jpg" alt="provechoo.com" title="provechoo.com" style="max-height:350px;max-width:1400px;min-height:350px;min-width:1400px">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>@ViewBag.Title</h2>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Inicio</a></li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="aa-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-contact-area">
+                    <div class="aa-contact-address">
+                        @if (User.Identity.IsAuthenticated == true)
+                        {
+                            <div class="row">
+                                <div class="col-md-8">
+                                    @TempData["msg"]
+                                    <form class="comments-form contact-form" action="" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="aa-checkout-single-bill">
+                                                    <select class="form-control m-bot15" id="payment" name="PaymentId">
+                                                        <option>--- Elija Un Sistema de Pago ---</option>
+                                                        @foreach (var item in ViewBag.Payments)
+                                                        {
+                                                            <option value="@item.Id">@item.Name</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="NameSurname" placeholder="Nombre-Apellido *" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="PhoneNumber" placeholder="Tu Numero de Telefono *" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="Address" rows="3" placeholder="Dirección de Entrega *" required></textarea>
+                                        </div>
+                                        <button type="submit" class="aa-secondary-btn" onclick="return confirm('No olvide que puede haber un problema con sus targetas, asegúrese de tener efectivo con usted.')">Hacer Pago</button>
+                                        <a href="~/Order/Pay" class="aa-default-btn">Cancelar</a>
+
+                                    </form>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="checkout-right">
+                                        <h4>Contenido de Su Carrito</h4>
+                                        <div class="aa-order-summary-area">
+                                            @{
+                                                Html.RenderAction("_OrderPay", "Home");
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (User.Identity.IsAuthenticated == false)
+                        {
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <strong style="color:darkred">
+                                        Tienes que iniciar sesión para poder realizar un pedido. Si es miembro, inicie sesión ahora o regístrese => <a href="~/UserAccount/Register" class="btn btn-primary">Hemen Üye Ol</a> haga clic en el botón.<br />
+                                        Que tengas un buen día y buenas compras. Disfrute de su comida.
+                                    </strong>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,104 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<OrderFood.Entity.Models.CompanySocialMedia>
+@{
+    ViewBag.Title = "Company Social Media Address List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section id="container" class="">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            @ViewBag.Title - <a href="~/CompanySocialMedia/kurtulusocL" class="btn btn-info btn-xs">Company Active Social Media Address List</a>
+                        </header>
+                        <table class="table table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="80">Logosu</th>
+                                    <th>Name</th>
+                                    <th>Company Name</th>
+                                    <th>City/Country</th>
+                                    <th>Add Date</th>
+                                    <th>Update Date</th>
+                                    <th>Operations</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><img src="~/img/companysocial/@item.Logo" title="@item.Name" class="img-responsive" /></td>
+                                        <td>
+                                            @if (item.Url != null)
+                                            {
+                                                <a href="@item.Url" class="btn btn-link" target="_blank">@item.Name</a>
+                                            }
+                                            else
+                                            {
+                                                <strong style="color:darkred">No information typed</strong>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.CompanyId != null)
+                                            {
+                                                <a href="~/CompanySocialMedia/Company/@item.CompanyId" class="btn btn-link">
+                                                    <strong style="color:darkblue">@item.Company.Name</strong>
+                                                </a>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.CompanyId != null)
+                                            {
+                                                <strong>City: @item.Company.City.Name</strong><br />
+                                                <strong>Country: @item.Company.Country.Name</strong>
+                                            }
+                                        </td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td>
+                                            @if (item.UpdatedDate != null)
+                                            {
+                                                @item.UpdatedDate.Value.ToShortDateString()
+                                            }
+                                            else
+                                            {
+                                                <span>-</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("Asistant"))
+                                            {
+                                                if (item.IsConfirmed == true)
+                                                {
+                                                    <a href="~/CompanySocialMedia/DeActive/@item.Id" class="btn btn-warning btn-xs">Suspend</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="~/CompanySocialMedia/Active/@item.Id" class="btn btn-success btn-xs">Publish</a>
+                                                }
+                                                <a href="~/CompanySocialMedia/Delete/@item.Id" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure ?')">Delete</a>
+                                            }
+                                            else
+                                            {
+                                                <span>you have no authority.</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <div class="pagination" align="center">
+                <div class="pagination-large">
+                    @Html.PagedListPager(Model, Page => Url.Action("SocialMediaList", new { Page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

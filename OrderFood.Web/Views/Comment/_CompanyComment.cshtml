@@ -1,0 +1,24 @@
+﻿@model IEnumerable<OrderFood.Entity.Models.Comment>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <div class="media">
+            <div class="media-left">
+                <a>
+                    <img class="media-object" src="~/img/user.jpg" style="max-height:60px;max-width:60px;min-height:60px;min-width:60px" alt="image">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><strong>@item.NameSurname</strong> - <span>@item.CreatedDate.ToShortDateString()</span></h4>               
+                <p>@item.Text</p>
+            </div>
+        </div>
+        @{ 
+            Html.RenderAction("_HitCount", "Comment", new { id = item.Id });
+        }
+    </li>
+}

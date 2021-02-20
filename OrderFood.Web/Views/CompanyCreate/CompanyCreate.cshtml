@@ -1,0 +1,120 @@
+﻿@model OrderFood.Entity.Models.Company
+@{
+    ViewBag.Title = "Registre La Información De Su Compañía";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+<script src="~/Content/temp/userpage/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/web/company.js"></script>
+
+<div class="container-fluid  dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">
+                    @if (TempData["message"] != null)
+                    {
+                        <strong style="color:darkblue">@TempData["message"]</strong>
+                    }
+                    @if (TempData["err"] != null)
+                    {
+                        <strong style="color:darkred">@TempData["err"]</strong>
+                    }
+                    @if (TempData["message"] == null && TempData["err"] == null)
+                    {
+                        @ViewBag.Title
+                    }
+                </h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/Index" class="breadcrumb-link">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="~/HomeCompany/UserProfile" class="breadcrumb-link">Perfil de la Compañía</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 style="color:darkred" class="card-header">
+                    <a href="~/CompanyCreate/CompanyList" class="btn btn-primary btn-xs">Lista de Compañía</a> - Campos marcados con * son obligatorios
+                </h5>
+                <div class="card-body">
+                    @Html.ValidationSummary()
+                    <form id="validationform" method="post" data-parsley-validate="" novalidate="" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <h4 style="color:darkblue">Información de Ubicación y Tipo de Compañía</h4>
+                        <hr />
+                        <div class="form-group">
+                            <label for="input-select">Lista de Países *</label>
+                            <select class="form-control" name="CountryId" id="country">
+                                <option>-- Elige un Pais --</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-select">Lista de Ciudades *</label>
+                            <select class="form-control" name="CityId" id="city" disabled>
+                                <option>-- Primero Seleccione un País --</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-select">Lista de Tipos *</label>
+                            <select class="form-control" id="input-select" name="KindId">
+                                <option>-- Elija un Tipo de Compañía --</option>
+                                @foreach (var item in ViewBag.Kinds)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <hr />
+                        <h4 style="color:darkblue">Información de la Compañía</h4>
+                        <hr />
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Nombre de Compañía: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="Name" placeholder="Nombre de Compañía" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Eslogan de la Compañía: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="text" required="" name="Title" placeholder="Eslogan de la Compañía" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Información Detallada de la Compañía: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <textarea required="" name="Detail" placeholder="Información Detallada de la Compañía" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Información Detallada Secundaria de la Compañía:</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <textarea name="Subdetail" placeholder="Información Detallada Secundaria de la Compañía" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Logotipo de Su Compañía: *</label>
+                            <div class="col-12 col-sm-8 col-lg-6">
+                                <input type="file" required="" name="image" class="form-control">
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group row text-right">
+                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                <button type="submit" class="btn btn-space btn-primary">Guardar información</button>
+                                <a href="~/CompanyCreate/CompanyList" class="btn btn-space btn-secondary">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
